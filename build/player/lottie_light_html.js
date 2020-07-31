@@ -6084,7 +6084,8 @@ function SVGRenderer(animationItem, config){
         _mdf: false,
         frameNum: -1,
         defs: defs,
-        renderConfig: this.renderConfig
+        renderConfig: this.renderConfig,
+        baseGroup: this.layerElement
     };
     this.elements = [];
     this.pendingElements = [];
@@ -7673,9 +7674,46 @@ SVGBaseElement.prototype = {
         this.maskedElement = this.layerElement;
         this._sizeChanged = false;
         var layerElementParent = null;
+
         //If this layer acts as a mask for the following layer
         var filId, fil, gg;
-        if (this.data.td) {
+
+        // Global mask
+        if (this.data.lbl && this.data.lbl == 13) {
+            var maskGroup = createNS('mask');
+            maskGroup.setAttribute('id', this.layerId);
+            maskGroup.setAttribute('mask-type','alpha');
+            var maskGrouper = createNS('g');
+            maskGroup.appendChild(maskGrouper);
+            filId = createElementID();
+            fil = filtersFactory.createFilter(filId);
+
+            var feCTr = createNS('feComponentTransfer');
+            feCTr.setAttribute('in','SourceGraphic');
+            fil.appendChild(feCTr);
+            var feFunc = createNS('feFuncA');
+            feFunc.setAttribute('type','table');
+            feFunc.setAttribute('tableValues','1.0 0.0');
+            feCTr.appendChild(feFunc);
+            
+            this.globalData.defs.appendChild(fil);
+            var alphaRect = createNS('rect');
+            alphaRect.setAttribute('width',  this.comp.data.w);
+            alphaRect.setAttribute('height', this.comp.data.h);
+            alphaRect.setAttribute('x','0');
+            alphaRect.setAttribute('y','0');
+            alphaRect.setAttribute('fill','#ffffff');
+            alphaRect.setAttribute('opacity','0');
+            maskGrouper.setAttribute('filter', 'url(' + locationHref + '#'+filId+')');
+            maskGrouper.appendChild(alphaRect);
+            maskGrouper.appendChild(this.layerElement);
+            layerElementParent = maskGrouper;
+            
+            this.globalData.defs.appendChild(maskGroup);
+
+            this.globalData.baseGroup.setAttribute("mask", "url(" + locationHref + "#" + this.layerId + ")");
+            
+        } else if (this.data.td) {
             if (this.data.td == 3 || this.data.td == 1) {
                 var masker = createNS('mask');
                 masker.setAttribute('id', this.layerId);

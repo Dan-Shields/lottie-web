@@ -50,7 +50,8 @@ function SVGRenderer(animationItem, config){
         _mdf: false,
         frameNum: -1,
         defs: defs,
-        renderConfig: this.renderConfig
+        renderConfig: this.renderConfig,
+        baseGroup: this.layerElement
     };
     this.elements = [];
     this.pendingElements = [];

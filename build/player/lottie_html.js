@@ -8240,6 +8240,7 @@ SVGTextElement.prototype.buildNewText = function(){
             tSpan.setAttribute('x', 0);
             tSpan.setAttribute('y', yPos);
             tSpan.style.display = 'inherit';
+            tSpan.id = `text_${this.data.nm}`;
             tElement.appendChild(tSpan);
             this.textSpans[i] = tSpan;
             yPos += documentData.finalLineHeight;

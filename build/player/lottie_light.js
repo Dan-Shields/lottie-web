@@ -23,9 +23,6 @@ var svgNS = 'http://www.w3.org/2000/svg';
 var locationHref = '';
 
 var initialDefaultFrame = -999999;
-<<<<<<< HEAD
-
-=======
 
 /* global createSizedArray */
 /* exported subframeEnabled, expressionsPlugin, isSafari, cachedColors, bmPow, bmSqrt, bmFloor, bmMax, bmMin, ProjectInterface,
@@ -33,7 +30,6 @@ defaultCurveSegments, degToRads, roundCorner, bmRnd, styleDiv, BMEnterFrameEvent
 BMSegmentStartEvent, BMDestroyEvent, BMRenderFrameErrorEvent, BMConfigErrorEvent, BMAnimationConfigErrorEvent, createElementID,
 addSaturationToRGB, addBrightnessToRGB, addHueToRGB, rgbToHex */
 
->>>>>>> master
 var subframeEnabled = true;
 var expressionsPlugin;
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -247,155 +243,6 @@ var rgbToHex = (function () {
     colorMap[i] = hex.length === 1 ? '0' + hex : hex;
   }
 
-<<<<<<< HEAD
-    return function(r, g, b) {
-        if(r<0){
-            r = 0;
-        }
-        if(g<0){
-            g = 0;
-        }
-        if(b<0){
-            b = 0;
-        }
-        return '#' + colorMap[r] + colorMap[g] + colorMap[b];
-    };
-}());
-function BaseEvent(){}
-BaseEvent.prototype = {
-	triggerEvent: function (eventName, args) {
-	    if (this._cbs[eventName]) {
-	        var len = this._cbs[eventName].length;
-	        for (var i = 0; i < len; i++){
-	            this._cbs[eventName][i](args);
-	        }
-	    }
-	},
-	addEventListener: function (eventName, callback) {
-	    if (!this._cbs[eventName]){
-	        this._cbs[eventName] = [];
-	    }
-	    this._cbs[eventName].push(callback);
-
-		return function() {
-			this.removeEventListener(eventName, callback);
-		}.bind(this);
-	},
-	removeEventListener: function (eventName,callback){
-	    if (!callback){
-	        this._cbs[eventName] = null;
-	    }else if(this._cbs[eventName]){
-	        var i = 0, len = this._cbs[eventName].length;
-	        while(i<len){
-	            if(this._cbs[eventName][i] === callback){
-	                this._cbs[eventName].splice(i,1);
-	                i -=1;
-	                len -= 1;
-	            }
-	            i += 1;
-	        }
-	        if(!this._cbs[eventName].length){
-	            this._cbs[eventName] = null;
-	        }
-	    }
-	}
-};
-var createTypedArray = (function(){
-	function createRegularArray(type, len){
-		var i = 0, arr = [], value;
-		switch(type) {
-			case 'int16':
-			case 'uint8c':
-				value = 1;
-				break;
-			default:
-				value = 1.1;
-				break;
-		}
-		for(i = 0; i < len; i += 1) {
-			arr.push(value);
-		}
-		return arr;
-	}
-	function createTypedArray(type, len){
-		if(type === 'float32') {
-			return new Float32Array(len);
-		} else if(type === 'int16') {
-			return new Int16Array(len);
-		} else if(type === 'uint8c') {
-			return new Uint8ClampedArray(len);
-		}
-	}
-	if(typeof Uint8ClampedArray === 'function' && typeof Float32Array === 'function') {
-		return createTypedArray;
-	} else {
-		return createRegularArray;
-	}
-}());
-
-function createSizedArray(len) {
-	return Array.apply(null,{length:len});
-}
-function createNS(type) {
-	//return {appendChild:function(){},setAttribute:function(){},style:{}}
-	return document.createElementNS(svgNS, type);
-}
-function createTag(type) {
-	//return {appendChild:function(){},setAttribute:function(){},style:{}}
-	return document.createElement(type);
-}
-function DynamicPropertyContainer(){};
-DynamicPropertyContainer.prototype = {
-	addDynamicProperty: function(prop) {
-		if(this.dynamicProperties.indexOf(prop) === -1) {
-	        this.dynamicProperties.push(prop);
-	        this.container.addDynamicProperty(this);
-	    	this._isAnimated = true;
-	    }
-	},
-	iterateDynamicProperties: function(){
-	    this._mdf = false;
-	    var i, len = this.dynamicProperties.length;
-	    for(i=0;i<len;i+=1){
-	        this.dynamicProperties[i].getValue();
-	        if(this.dynamicProperties[i]._mdf) {
-	            this._mdf = true;
-	        }
-	    }
-	},
-	initDynamicPropertyContainer: function(container){
-	    this.container = container;
-	    this.dynamicProperties = [];
-	    this._mdf = false;
-	    this._isAnimated = false;
-	}
-}
-var getBlendMode = (function() {
-
-	var blendModeEnums = {
-        0:'source-over',
-        1:'multiply',
-        2:'screen',
-        3:'overlay',
-        4:'darken',
-        5:'lighten',
-        6:'color-dodge',
-        7:'color-burn',
-        8:'hard-light',
-        9:'soft-light',
-        10:'difference',
-        11:'exclusion',
-        12:'hue',
-        13:'saturation',
-        14:'color',
-        15:'luminosity'
-    }
-
-	return function(mode) {
-		return blendModeEnums[mode] || '';
-	}
-}())
-=======
   return function (r, g, b) {
     if (r < 0) {
       r = 0;
@@ -564,7 +411,6 @@ var getBlendMode = (function () {
 
 /* global createTypedArray */
 
->>>>>>> master
 /*!
  Transformation Matrix v2.0
  (c) Epistemex 2014-2015
@@ -985,12 +831,8 @@ var Matrix = (function () {
     this.reset();
   };
 }());
-<<<<<<< HEAD
-
-=======
 
 /* eslint-disable */
->>>>>>> master
 /*
  Copyright 2014 David Bau.
 
@@ -1223,16 +1065,10 @@ var Matrix = (function () {
 })(
     [],     // pool: entropy pool starts empty
     BMMath    // math: package containing random, pow, and seedrandom
-<<<<<<< HEAD
-);
-var BezierFactory = (function(){
-    /**
-=======
 );
 /* eslint-disable */
 var BezierFactory = (function () {
   /**
->>>>>>> master
      * BezierEasing - use bezier curve for transition easing function
      * by Gaëtan Renaudeau 2014 - 2015 – MIT License
      *
@@ -1384,13 +1220,9 @@ var BezierFactory = (function () {
     },
   };
 
-<<<<<<< HEAD
-}());
-=======
   return ob;
 }());
 
->>>>>>> master
 (function () {
   var lastTime = 0;
   var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -1416,16 +1248,6 @@ var BezierFactory = (function () {
     };
   }
 }());
-<<<<<<< HEAD
-
-function extendPrototype(sources,destination){
-    var i, len = sources.length, sourcePrototype;
-    for (i = 0;i < len;i += 1) {
-        sourcePrototype = sources[i].prototype;
-        for (var attr in sourcePrototype) {
-            if (sourcePrototype.hasOwnProperty(attr)) destination.prototype[attr] = sourcePrototype[attr];
-        }
-=======
 
 /* exported extendPrototype, getDescriptor, createProxyFunction */
 
@@ -1437,7 +1259,6 @@ function extendPrototype(sources, destination) {
     sourcePrototype = sources[i].prototype;
     for (var attr in sourcePrototype) {
       if (Object.prototype.hasOwnProperty.call(sourcePrototype, attr)) destination.prototype[attr] = sourcePrototype[attr];
->>>>>>> master
     }
   }
 }
@@ -1447,13 +1268,6 @@ function getDescriptor(object, prop) {
 }
 
 function createProxyFunction(prototype) {
-<<<<<<< HEAD
-	function ProxyFunction(){}
-	ProxyFunction.prototype = prototype;
-	return ProxyFunction;
-}
-function bezFunction(){
-=======
   function ProxyFunction() {}
   ProxyFunction.prototype = prototype;
   return ProxyFunction;
@@ -1696,7 +1510,6 @@ function bezFunction() {
     pointOnLine3D: pointOnLine3D,
   };
 }
->>>>>>> master
 
 var bez = bezFunction();
 
@@ -1891,48 +1704,6 @@ function dataFunctionManager() {
         }
       }
     };
-<<<<<<< HEAD
-}
-
-var bez = bezFunction();
-function dataFunctionManager(){
-
-    //var tCanvasHelper = createTag('canvas').getContext('2d');
-
-    function completeLayers(layers, comps, fontManager){
-        var layerData;
-        var animArray, lastFrame;
-        var i, len = layers.length;
-        var j, jLen, k, kLen;
-        for(i=0;i<len;i+=1){
-            layerData = layers[i];
-            if(!('ks' in layerData) || layerData.completed){
-                continue;
-            }
-            layerData.completed = true;
-            if(layerData.tt){
-                layers[i-1].td = layerData.tt;
-            }
-            animArray = [];
-            lastFrame = -1;
-            if(layerData.hasMask){
-                var maskProps = layerData.masksProperties;
-                jLen = maskProps.length;
-                for(j=0;j<jLen;j+=1){
-                    if(maskProps[j].pt.k.i){
-                        convertPathsToAbsoluteValues(maskProps[j].pt.k);
-                    }else{
-                        kLen = maskProps[j].pt.k.length;
-                        for(k=0;k<kLen;k+=1){
-                            if(maskProps[j].pt.k[k].s){
-                                convertPathsToAbsoluteValues(maskProps[j].pt.k[k].s[0]);
-                            }
-                            if(maskProps[j].pt.k[k].e){
-                                convertPathsToAbsoluteValues(maskProps[j].pt.k[k].e[0]);
-                            }
-                        }
-                    }
-=======
   }());
 
   var checkColors = (function () {
@@ -2049,7 +1820,6 @@ function dataFunctionManager(){
               for (k = 0; k < kLen; k += 1) {
                 if (maskProps[j].pt.k[k].s) {
                   maskProps[j].pt.k[k].s[0].c = maskProps[j].cl;
->>>>>>> master
                 }
                 if (maskProps[j].pt.k[k].e) {
                   maskProps[j].pt.k[k].e[0].c = maskProps[j].cl;
@@ -2366,114 +2136,8 @@ var FontManager = (function () {
     if (!chars) {
       return;
     }
-<<<<<<< HEAD
-
-    var moduleOb = {};
-    moduleOb.completeData = completeData;
-    moduleOb.checkColors = checkColors;
-    moduleOb.checkChars = checkChars;
-    moduleOb.checkShapes = checkShapes;
-    moduleOb.completeLayers = completeLayers;
-
-    return moduleOb;
-}
-
-var dataManager = dataFunctionManager();
-
-var FontManager = (function(){
-
-    var maxWaitingTime = 5000;
-    var emptyChar = {
-        w: 0,
-        size:0,
-        shapes:[]
-    };
-    var combinedCharacters = [];
-    //Hindi characters
-    combinedCharacters = combinedCharacters.concat([2304, 2305, 2306, 2307, 2362, 2363, 2364, 2364, 2366
-    , 2367, 2368, 2369, 2370, 2371, 2372, 2373, 2374, 2375, 2376, 2377, 2378, 2379
-    , 2380, 2381, 2382, 2383, 2387, 2388, 2389, 2390, 2391, 2402, 2403]);
-
-    function trimFontOptions(font) {
-        var familyArray = font.split(',');
-        var i, len = familyArray.length;
-        var enabledFamilies = [];
-        for (i = 0; i < len; i += 1) {
-            if (familyArray[i] !== 'sans-serif' && familyArray[i] !== 'monospace') {
-                enabledFamilies.push(familyArray[i]);
-            }
-        }
-        return enabledFamilies.join(',');
-    }
-
-    function setUpNode(font, family){
-        var parentNode = createTag('span');
-        parentNode.style.fontFamily    = family;
-        var node = createTag('span');
-        // Characters that vary significantly among different fonts
-        node.innerHTML = 'giItT1WQy@!-/#';
-        // Visible - so we can measure it - but not on the screen
-        parentNode.style.position      = 'absolute';
-        parentNode.style.left          = '-10000px';
-        parentNode.style.top           = '-10000px';
-        // Large font size makes even subtle changes obvious
-        parentNode.style.fontSize      = '300px';
-        // Reset any font properties
-        parentNode.style.fontVariant   = 'normal';
-        parentNode.style.fontStyle     = 'normal';
-        parentNode.style.fontWeight    = 'normal';
-        parentNode.style.letterSpacing = '0';
-        parentNode.appendChild(node);
-        document.body.appendChild(parentNode);
-
-        // Remember width with no applied web font
-        var width = node.offsetWidth;
-        node.style.fontFamily = trimFontOptions(font) + ', ' + family;
-        return {node:node, w:width, parent:parentNode};
-    }
-
-    function checkLoadedFonts() {
-        var i, len = this.fonts.length;
-        var node, w;
-        var loadedCount = len;
-        for(i=0;i<len; i+= 1){
-            if(this.fonts[i].loaded){
-                loadedCount -= 1;
-                continue;
-            }
-            if(this.fonts[i].fOrigin === 'n' || this.fonts[i].origin === 0){
-                this.fonts[i].loaded = true;
-            } else{
-                node = this.fonts[i].monoCase.node;
-                w = this.fonts[i].monoCase.w;
-                if(node.offsetWidth !== w){
-                    loadedCount -= 1;
-                    this.fonts[i].loaded = true;
-                }else{
-                    node = this.fonts[i].sansCase.node;
-                    w = this.fonts[i].sansCase.w;
-                    if(node.offsetWidth !== w){
-                        loadedCount -= 1;
-                        this.fonts[i].loaded = true;
-                    }
-                }
-                if(this.fonts[i].loaded){
-                    this.fonts[i].sansCase.parent.parentNode.removeChild(this.fonts[i].sansCase.parent);
-                    this.fonts[i].monoCase.parent.parentNode.removeChild(this.fonts[i].monoCase.parent);
-                }
-            }
-        }
-
-        if(loadedCount !== 0 && Date.now() - this.initTime < maxWaitingTime){
-            setTimeout(this.checkLoadedFontsBinded, 20);
-        }else{
-            setTimeout(this.setIsLoadedBinded, 10);
-
-        }
-=======
     if (!this.chars) {
       this.chars = [];
->>>>>>> master
     }
     var i;
     var len = chars.length;
@@ -3053,20 +2717,11 @@ var PropertyFactory = (function () {
     return p;
   }
 
-<<<<<<< HEAD
-    Font.prototype = fontPrototype;
-
-    return Font;
-
-}());
-var PropertyFactory = (function(){
-=======
   var ob = {
     getProp: getProp,
   };
   return ob;
 }());
->>>>>>> master
 
 /* global Matrix, degToRads, PropertyFactory, extendPrototype, DynamicPropertyContainer */
 /* exported TransformPropertyFactory */
@@ -3113,18 +2768,7 @@ var TransformPropertyFactory = (function () {
       this._isDirty = false;
     }
 
-<<<<<<< HEAD
-    var ob = {
-        getProp: getProp
-    };
-    return ob;
-}());
-var TransformPropertyFactory = (function() {
-
-    var defaultVector = [0,0]
-=======
     this.iterateDynamicProperties();
->>>>>>> master
 
     if (this._mdf || forceRender) {
       var frameRate;
@@ -3314,49 +2958,13 @@ var TransformPropertyFactory = (function() {
     return new TransformProperty(elem, data, container);
   }
 
-<<<<<<< HEAD
-}());
-function ShapePath(){
-	this.c = false;
-	this._length = 0;
-	this._maxLength = 8;
-	this.v = createSizedArray(this._maxLength);
-	this.o = createSizedArray(this._maxLength);
-	this.i = createSizedArray(this._maxLength);
-}
-=======
   return {
     getTransformProperty: getTransformProperty,
   };
 }());
->>>>>>> master
 
 /* global createSizedArray, createSizedArray, pointPool */
 
-<<<<<<< HEAD
-    var i;
-    for (i = init; i < len; i += 1) {
-    	newPath.setTripleAt(vertices[cnt][0], vertices[cnt][1], inPoints[cnt][0], inPoints[cnt][1], outPoints[cnt][0], outPoints[cnt][1], i, false);
-        cnt -= 1;
-    }
-    return newPath;
-};
-var ShapePropertyFactory = (function(){
-
-    var initFrame = -999999;
-
-    function interpolateShape(frameNum, previousValue, caching) {
-        var iterationIndex = caching.lastIndex;
-        var keyPropS,keyPropE,isHold, j, k, jLen, kLen, perc, vertexValue;
-        var kf = this.keyframes;
-        if(frameNum < kf[0].t-this.offsetTime){
-            keyPropS = kf[0].s[0];
-            isHold = true;
-            iterationIndex = 0;
-        }else if(frameNum >= kf[kf.length - 1].t-this.offsetTime){
-            keyPropS = kf[kf.length - 1].s ? kf[kf.length - 1].s[0] : kf[kf.length - 2].e[0];
-            /*if(kf[kf.length - 1].s){
-=======
 function ShapePath() {
   this.c = false;
   this._length = 0;
@@ -3473,7 +3081,6 @@ var ShapePropertyFactory = (function () {
     } else if (frameNum >= kf[kf.length - 1].t - this.offsetTime) {
       keyPropS = kf[kf.length - 1].s ? kf[kf.length - 1].s[0] : kf[kf.length - 2].e[0];
       /* if(kf[kf.length - 1].s){
->>>>>>> master
                 keyPropS = kf[kf.length - 1].s[0];
             }else{
                 keyPropS = kf[kf.length - 2].e[0];
@@ -3989,25 +3596,11 @@ var ShapePropertyFactory = (function () {
 /* global shapeCollectionPool, initialDefaultFrame, extendPrototype, DynamicPropertyContainer */
 /* exported ShapeModifiers */
 
-<<<<<<< HEAD
-    var ob = {};
-    ob.getShapeProp = getShapeProp;
-    ob.getConstructorFunction = getConstructorFunction;
-    ob.getKeyframedConstructorFunction = getKeyframedConstructorFunction;
-    return ob;
-}());
-var ShapeModifiers = (function(){
-    var ob = {};
-    var modifiers = {};
-    ob.registerModifier = registerModifier;
-    ob.getModifier = getModifier;
-=======
 var ShapeModifiers = (function () {
   var ob = {};
   var modifiers = {};
   ob.registerModifier = registerModifier;
   ob.getModifier = getModifier;
->>>>>>> master
 
   function registerModifier(nm, factory) {
     if (!modifiers[nm]) {
@@ -4059,24 +3652,7 @@ ShapeModifier.prototype.processKeys = function () {
   this.iterateDynamicProperties();
 };
 
-<<<<<<< HEAD
 extendPrototype([DynamicPropertyContainer], ShapeModifier);
-function TrimModifier(){
-}
-extendPrototype([ShapeModifier], TrimModifier);
-TrimModifier.prototype.initModifierProperties = function(elem, data) {
-    this.s = PropertyFactory.getProp(elem, data.s, 0, 0.01, this);
-    this.e = PropertyFactory.getProp(elem, data.e, 0, 0.01, this);
-    this.o = PropertyFactory.getProp(elem, data.o, 0, 0, this);
-    this.sValue = 0;
-    this.eValue = 0;
-    this.getValue = this.processKeys;
-    this.m = data.m;
-    this._isAnimated = !!this.s.effectsSequence.length || !!this.e.effectsSequence.length || !!this.o.effectsSequence.length;
-};
-=======
-extendPrototype([DynamicPropertyContainer], ShapeModifier);
->>>>>>> master
 
 /* global extendPrototype, ShapeModifier, PropertyFactory, segmentsLengthPool, bez, shapePool, ShapeModifiers */
 
@@ -4617,167 +4193,7 @@ ShapeModifiers.registerModifier('pb', PuckerAndBloatModifier);
 
 /* global extendPrototype, ShapeModifier, TransformPropertyFactory, PropertyFactory, Matrix, ShapeModifiers */
 
-<<<<<<< HEAD
-ShapeModifiers.registerModifier('tm', TrimModifier);
-function RoundCornersModifier(){}
-extendPrototype([ShapeModifier],RoundCornersModifier);
-RoundCornersModifier.prototype.initModifierProperties = function(elem,data){
-    this.getValue = this.processKeys;
-    this.rd = PropertyFactory.getProp(elem,data.r,0,null,this);
-    this._isAnimated = !!this.rd.effectsSequence.length;
-};
-
-RoundCornersModifier.prototype.processPath = function(path, round){
-    var cloned_path = shape_pool.newElement();
-    cloned_path.c = path.c;
-    var i, len = path._length;
-    var currentV,currentI,currentO,closerV, newV,newO,newI,distance,newPosPerc,index = 0;
-    var vX,vY,oX,oY,iX,iY;
-    for(i=0;i<len;i+=1){
-        currentV = path.v[i];
-        currentO = path.o[i];
-        currentI = path.i[i];
-        if(currentV[0]===currentO[0] && currentV[1]===currentO[1] && currentV[0]===currentI[0] && currentV[1]===currentI[1]){
-            if((i===0 || i === len - 1) && !path.c){
-                cloned_path.setTripleAt(currentV[0],currentV[1],currentO[0],currentO[1],currentI[0],currentI[1],index);
-                /*cloned_path.v[index] = currentV;
-                cloned_path.o[index] = currentO;
-                cloned_path.i[index] = currentI;*/
-                index += 1;
-            } else {
-                if(i===0){
-                    closerV = path.v[len-1];
-                } else {
-                    closerV = path.v[i-1];
-                }
-                distance = Math.sqrt(Math.pow(currentV[0]-closerV[0],2)+Math.pow(currentV[1]-closerV[1],2));
-                newPosPerc = distance ? Math.min(distance/2,round)/distance : 0;
-                vX = iX = currentV[0]+(closerV[0]-currentV[0])*newPosPerc;
-                vY = iY = currentV[1]-(currentV[1]-closerV[1])*newPosPerc;
-                oX = vX-(vX-currentV[0])*roundCorner;
-                oY = vY-(vY-currentV[1])*roundCorner;
-                cloned_path.setTripleAt(vX,vY,oX,oY,iX,iY,index);
-                index += 1;
-
-                if(i === len - 1){
-                    closerV = path.v[0];
-                } else {
-                    closerV = path.v[i+1];
-                }
-                distance = Math.sqrt(Math.pow(currentV[0]-closerV[0],2)+Math.pow(currentV[1]-closerV[1],2));
-                newPosPerc = distance ? Math.min(distance/2,round)/distance : 0;
-                vX = oX = currentV[0]+(closerV[0]-currentV[0])*newPosPerc;
-                vY = oY = currentV[1]+(closerV[1]-currentV[1])*newPosPerc;
-                iX = vX-(vX-currentV[0])*roundCorner;
-                iY = vY-(vY-currentV[1])*roundCorner;
-                cloned_path.setTripleAt(vX,vY,oX,oY,iX,iY,index);
-                index += 1;
-            }
-        } else {
-            cloned_path.setTripleAt(path.v[i][0],path.v[i][1],path.o[i][0],path.o[i][1],path.i[i][0],path.i[i][1],index);
-            index += 1;
-        }
-    }
-    return cloned_path;
-};
-
-RoundCornersModifier.prototype.processShapes = function(_isFirstFrame){
-    var shapePaths;
-    var i, len = this.shapes.length;
-    var j, jLen;
-    var rd = this.rd.v;
-
-    if(rd !== 0){
-        var shapeData, newPaths, localShapeCollection;
-        for(i=0;i<len;i+=1){
-            shapeData = this.shapes[i];
-            newPaths = shapeData.shape.paths;
-            localShapeCollection = shapeData.localShapeCollection;
-            if(!(!shapeData.shape._mdf && !this._mdf && !_isFirstFrame)){
-                localShapeCollection.releaseShapes();
-                shapeData.shape._mdf = true;
-                shapePaths = shapeData.shape.paths.shapes;
-                jLen = shapeData.shape.paths._length;
-                for(j=0;j<jLen;j+=1){
-                    localShapeCollection.addShape(this.processPath(shapePaths[j],rd));
-                }
-            }
-            shapeData.shape.paths = shapeData.localShapeCollection;
-        }
-
-    }
-    if(!this.dynamicProperties.length){
-        this._mdf = false;
-    }
-};
-
-ShapeModifiers.registerModifier('rd',RoundCornersModifier);
-function PuckerAndBloatModifier(){}
-extendPrototype([ShapeModifier],PuckerAndBloatModifier);
-PuckerAndBloatModifier.prototype.initModifierProperties = function(elem,data){
-    this.getValue = this.processKeys;
-    this.amount = PropertyFactory.getProp(elem,data.a,0,null,this);
-    this._isAnimated = !!this.amount.effectsSequence.length;
-};
-
-PuckerAndBloatModifier.prototype.processPath = function(path, amount){
-    var percent = amount / 100;
-    var centerPoint = [0, 0];
-    var pathLength = path._length, i = 0;
-    for (i = 0; i < pathLength; i += 1) {
-        centerPoint[0] += path.v[i][0];
-        centerPoint[1] += path.v[i][1];
-    }
-    centerPoint[0] /= pathLength;
-    centerPoint[1] /= pathLength;
-    var cloned_path = shape_pool.newElement();
-    cloned_path.c = path.c;
-    var vX, vY, oX, oY, iX, iY;
-    for(i = 0; i < pathLength; i += 1) {
-        vX = path.v[i][0] + (centerPoint[0] - path.v[i][0]) * percent;
-        vY = path.v[i][1] + (centerPoint[1] - path.v[i][1]) * percent;
-        oX = path.o[i][0] + (centerPoint[0] - path.o[i][0]) * -percent;
-        oY = path.o[i][1] + (centerPoint[1] - path.o[i][1]) * -percent;
-        iX = path.i[i][0] + (centerPoint[0] - path.i[i][0]) * -percent;
-        iY = path.i[i][1] + (centerPoint[1] - path.i[i][1]) * -percent;
-        cloned_path.setTripleAt(vX, vY, oX, oY, iX, iY, i);
-    }
-    return cloned_path;
-};
-
-PuckerAndBloatModifier.prototype.processShapes = function(_isFirstFrame){
-    var shapePaths;
-    var i, len = this.shapes.length;
-    var j, jLen;
-    var amount = this.amount.v;
-
-    if(amount !== 0){
-        var shapeData, newPaths, localShapeCollection;
-        for(i=0;i<len;i+=1){
-            shapeData = this.shapes[i];
-            newPaths = shapeData.shape.paths;
-            localShapeCollection = shapeData.localShapeCollection;
-            if(!(!shapeData.shape._mdf && !this._mdf && !_isFirstFrame)){
-                localShapeCollection.releaseShapes();
-                shapeData.shape._mdf = true;
-                shapePaths = shapeData.shape.paths.shapes;
-                jLen = shapeData.shape.paths._length;
-                for(j=0;j<jLen;j+=1){
-                    localShapeCollection.addShape(this.processPath(shapePaths[j], amount));
-                }
-            }
-            shapeData.shape.paths = shapeData.localShapeCollection;
-        }
-    }
-    if(!this.dynamicProperties.length){
-        this._mdf = false;
-    }
-};
-ShapeModifiers.registerModifier('pb',PuckerAndBloatModifier);
-function RepeaterModifier(){}
-=======
 function RepeaterModifier() {}
->>>>>>> master
 extendPrototype([ShapeModifier], RepeaterModifier);
 
 RepeaterModifier.prototype.initModifierProperties = function (elem, data) {
@@ -4869,6 +4285,7 @@ RepeaterModifier.prototype.processShapes = function (_isFirstFrame) {
   var i;
   var dir;
   var cont;
+  var hasReloaded = false;
   if (this._mdf || _isFirstFrame) {
     var copies = Math.ceil(this.c.v);
     if (this._groups.length < copies) {
@@ -4886,6 +4303,7 @@ RepeaterModifier.prototype.processShapes = function (_isFirstFrame) {
         this._currentCopies += 1;
       }
       this.elem.reloadShapes();
+      hasReloaded = true;
     }
     cont = 0;
     var renderFlag;
@@ -4978,6 +4396,7 @@ RepeaterModifier.prototype.processShapes = function (_isFirstFrame) {
       i += dir;
     }
   }
+  return hasReloaded;
 };
 
 RepeaterModifier.prototype.addShape = function () {};
@@ -4986,18 +4405,10 @@ ShapeModifiers.registerModifier('rp', RepeaterModifier);
 
 /* global createSizedArray, shapePool */
 
-<<<<<<< HEAD
-ShapeModifiers.registerModifier('rp',RepeaterModifier);
-function ShapeCollection(){
-	this._length = 0;
-	this._maxLength = 4;
-	this.shapes = createSizedArray(this._maxLength);
-=======
 function ShapeCollection() {
   this._length = 0;
   this._maxLength = 4;
   this.shapes = createSizedArray(this._maxLength);
->>>>>>> master
 }
 
 ShapeCollection.prototype.addShape = function (shapeData) {
@@ -5009,15 +4420,6 @@ ShapeCollection.prototype.addShape = function (shapeData) {
   this._length += 1;
 };
 
-<<<<<<< HEAD
-ShapeCollection.prototype.releaseShapes = function(){
-	var i;
-	for(i = 0; i < this._length; i += 1) {
-		shape_pool.release(this.shapes[i]);
-	}
-	this._length = 0;
-};
-=======
 ShapeCollection.prototype.releaseShapes = function () {
   var i;
   for (i = 0; i < this._length; i += 1) {
@@ -5028,7 +4430,6 @@ ShapeCollection.prototype.releaseShapes = function () {
 
 /* global createSizedArray, createTypedArray, PropertyFactory, extendPrototype, DynamicPropertyContainer */
 
->>>>>>> master
 function DashProperty(elem, data, renderer, container) {
   this.elem = elem;
   this.frameId = -1;
@@ -5079,22 +4480,6 @@ DashProperty.prototype.getValue = function (forceRender) {
     }
   }
 };
-<<<<<<< HEAD
-extendPrototype([DynamicPropertyContainer], DashProperty);
-function GradientProperty(elem,data,container){
-    this.data = data;
-    this.c = createTypedArray('uint8c', data.p*4);
-    var cLength = data.k.k[0].s ? (data.k.k[0].s.length - data.p*4) : data.k.k.length - data.p*4;
-    this.o = createTypedArray('float32', cLength);
-    this._cmdf = false;
-    this._omdf = false;
-    this._collapsable = this.checkCollapsable();
-    this._hasOpacity = cLength;
-    this.initDynamicPropertyContainer(container);
-    this.prop = PropertyFactory.getProp(elem,data.k,1,null,this);
-    this.k = this.prop.k;
-    this.getValue(true);
-=======
 extendPrototype([DynamicPropertyContainer], DashProperty);
 
 /* global createTypedArray, PropertyFactory, extendPrototype, DynamicPropertyContainer */
@@ -5111,7 +4496,6 @@ function GradientProperty(elem, data, container) {
   this.prop = PropertyFactory.getProp(elem, data.k, 1, null, this);
   this.k = this.prop.k;
   this.getValue(true);
->>>>>>> master
 }
 
 GradientProperty.prototype.comparePoints = function (values, points) {
@@ -5147,106 +4531,6 @@ GradientProperty.prototype.checkCollapsable = function () {
   return true;
 };
 
-<<<<<<< HEAD
-extendPrototype([DynamicPropertyContainer], GradientProperty);
-var buildShapeString = function(pathNodes, length, closed, mat) {
-	if(length === 0) {
-            return '';
-        }
-        var _o = pathNodes.o;
-        var _i = pathNodes.i;
-        var _v = pathNodes.v;
-        var i, shapeString = " M" + mat.applyToPointStringified(_v[0][0], _v[0][1]);
-        for(i = 1; i < length; i += 1) {
-            shapeString += " C" + mat.applyToPointStringified(_o[i - 1][0], _o[i - 1][1]) + " " + mat.applyToPointStringified(_i[i][0], _i[i][1]) + " " + mat.applyToPointStringified(_v[i][0], _v[i][1]);
-        }
-        if (closed && length) {
-            shapeString += " C" + mat.applyToPointStringified(_o[i - 1][0], _o[i - 1][1]) + " " + mat.applyToPointStringified(_i[0][0], _i[0][1]) + " " + mat.applyToPointStringified(_v[0][0], _v[0][1]);
-            shapeString += 'z';
-        }
-        return shapeString;
-}
-var ImagePreloader = (function(){
-
-    var proxyImage = (function(){
-        var canvas = createTag('canvas');
-        canvas.width = 1;
-        canvas.height = 1;
-        var ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'rgba(0,0,0,0)';
-        ctx.fillRect(0, 0, 1, 1);
-        return canvas;
-    }())
-
-    function imageLoaded(){
-        this.loadedAssets += 1;
-        if(this.loadedAssets === this.totalImages){
-            if(this.imagesLoadedCb) {
-                this.imagesLoadedCb(null);
-            }
-        }
-    }
-
-    function getAssetsPath(assetData, assetsPath, original_path) {
-        var path = '';
-        if (assetData.e) {
-            path = assetData.p;
-        } else if(assetsPath) {
-            var imagePath = assetData.p;
-            if (imagePath.indexOf('images/') !== -1) {
-                imagePath = imagePath.split('/')[1];
-            }
-            path = assetsPath + imagePath;
-        } else {
-            path = original_path;
-            path += assetData.u ? assetData.u : '';
-            path += assetData.p;
-        }
-        return path;
-    }
-
-    function createImageData(assetData) {
-        var path = getAssetsPath(assetData, this.assetsPath, this.path);
-        var img = createNS('image');
-        img.addEventListener('load', this._imageLoaded, false);
-        img.addEventListener('error', function() {
-            ob.img = proxyImage;
-            this._imageLoaded();
-        }.bind(this), false);
-        img.setAttributeNS('http://www.w3.org/1999/xlink','href', path);
-        var ob = {
-            img: img,
-            assetData: assetData
-        }
-        return ob;
-    }
-
-    function createImgData(assetData) {
-        var path = getAssetsPath(assetData, this.assetsPath, this.path);
-        var img = createTag('img');
-        img.crossOrigin = 'anonymous';
-        img.addEventListener('load', this._imageLoaded, false);
-        img.addEventListener('error', function() {
-            ob.img = proxyImage;
-            this._imageLoaded();
-        }.bind(this), false);
-        img.src = path;
-        var ob = {
-            img: img,
-            assetData: assetData
-        }
-        return ob;
-    }
-
-    function loadAssets(assets, cb){
-        this.imagesLoadedCb = cb;
-        var i, len = assets.length;
-        for (i = 0; i < len; i += 1) {
-            if(!assets[i].layers){
-                this.totalImages += 1;
-                this.images.push(this._createImageData(assets[i]));
-            }
-=======
 GradientProperty.prototype.getValue = function (forceRender) {
   this.prop.getValue();
   this._mdf = false;
@@ -5273,7 +4557,6 @@ GradientProperty.prototype.getValue = function (forceRender) {
         if (this.o[i - this.data.p * 4] !== val) {
           this.o[i - this.data.p * 4] = val;
           this._omdf = !forceRender;
->>>>>>> master
         }
       }
     }
@@ -5530,105 +4813,6 @@ var ImagePreloader = (function () {
     }
   }
 
-<<<<<<< HEAD
-    return ImagePreloader;
-}());
-var featureSupport = (function(){
-	var ob = {
-		maskType: true
-	};
-	if (/MSIE 10/i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent)) {
-	   ob.maskType = false;
-	}
-	return ob;
-}());
-var filtersFactory = (function(){
-	var ob = {};
-	ob.createFilter = createFilter;
-	ob.createAlphaToLuminanceFilter = createAlphaToLuminanceFilter;
-
-	function createFilter(filId){
-        	var fil = createNS('filter');
-        	fil.setAttribute('id',filId);
-                fil.setAttribute('filterUnits','objectBoundingBox');
-                fil.setAttribute('x','0%');
-                fil.setAttribute('y','0%');
-                fil.setAttribute('width','100%');
-                fil.setAttribute('height','100%');
-                return fil;
-	}
-
-	function createAlphaToLuminanceFilter(){
-                var feColorMatrix = createNS('feColorMatrix');
-                feColorMatrix.setAttribute('type','matrix');
-                feColorMatrix.setAttribute('color-interpolation-filters','sRGB');
-                feColorMatrix.setAttribute('values','0 0 0 1 0  0 0 0 1 0  0 0 0 1 0  0 0 0 1 1');
-                return feColorMatrix;
-	}
-
-	return ob;
-}());
-var assetLoader = (function(){
-
-	function formatResponse(xhr) {
-		if(xhr.response && typeof xhr.response === 'object') {
-			return xhr.response;
-		} else if(xhr.response && typeof xhr.response === 'string') {
-			return JSON.parse(xhr.response);
-		} else if(xhr.responseText) {
-			return JSON.parse(xhr.responseText);
-		}
-	}
-
-	function loadAsset(path, callback, errorCallback) {
-		var response;
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', path, true);
-		// set responseType after calling open or IE will break.
-		try {
-		    // This crashes on Android WebView prior to KitKat
-		    xhr.responseType = "json";
-		} catch (err) {}
-	    xhr.send();
-	    xhr.onreadystatechange = function () {
-	        if (xhr.readyState == 4) {
-	            if(xhr.status == 200){
-	            	response = formatResponse(xhr);
-	            	callback(response);
-	            }else{
-	                try{
-	            		response = formatResponse(xhr);
-	            		callback(response);
-	                }catch(err){
-	                	if(errorCallback) {
-	                		errorCallback(err);
-	                	}
-	                }
-	            }
-	        }
-	    };
-	}
-	return {
-		load: loadAsset
-	}
-}())
-
-function TextAnimatorProperty(textData, renderType, elem){
-    this._isFirstFrame = true;
-	this._hasMaskedPath = false;
-	this._frameId = -1;
-	this._textData = textData;
-	this._renderType = renderType;
-    this._elem = elem;
-	this._animatorsData = createSizedArray(this._textData.a.length);
-	this._pathData = {};
-	this._moreOptions = {
-		alignment: {}
-	};
-	this.renderedLetters = [];
-    this.lettersChangedFlag = false;
-    this.initDynamicPropertyContainer(elem);
-=======
   function ImagePreloaderFactory() {
     this._imageLoaded = imageLoaded.bind(this);
     this.testImageLoaded = testImageLoaded.bind(this);
@@ -5697,7 +4881,6 @@ var filtersFactory = (function () {
 
   return ob;
 }());
->>>>>>> master
 
 /* exported assetLoader */
 
@@ -6331,36 +5514,6 @@ TextAnimatorProperty.prototype.getValue = function () {
 
 TextAnimatorProperty.prototype.mHelper = new Matrix();
 TextAnimatorProperty.prototype.defaultPropsArray = [];
-<<<<<<< HEAD
-extendPrototype([DynamicPropertyContainer], TextAnimatorProperty);
-function TextAnimatorDataProperty(elem, animatorProps, container) {
-	var defaultData = {propType:false};
-	var getProp = PropertyFactory.getProp;
-	var textAnimator_animatables = animatorProps.a;
-	this.a = {
-		r: textAnimator_animatables.r ? getProp(elem, textAnimator_animatables.r, 0, degToRads, container) : defaultData,
-		rx: textAnimator_animatables.rx ? getProp(elem, textAnimator_animatables.rx, 0, degToRads, container) : defaultData,
-		ry: textAnimator_animatables.ry ? getProp(elem, textAnimator_animatables.ry, 0, degToRads, container) : defaultData,
-		sk: textAnimator_animatables.sk ? getProp(elem, textAnimator_animatables.sk, 0, degToRads, container) : defaultData,
-		sa: textAnimator_animatables.sa ? getProp(elem, textAnimator_animatables.sa, 0, degToRads, container) : defaultData,
-		s: textAnimator_animatables.s ? getProp(elem, textAnimator_animatables.s, 1, 0.01, container) : defaultData,
-		a: textAnimator_animatables.a ? getProp(elem, textAnimator_animatables.a, 1, 0, container) : defaultData,
-		o: textAnimator_animatables.o ? getProp(elem, textAnimator_animatables.o, 0, 0.01, container) : defaultData,
-		p: textAnimator_animatables.p ? getProp(elem,textAnimator_animatables.p, 1, 0, container) : defaultData,
-		sw: textAnimator_animatables.sw ? getProp(elem, textAnimator_animatables.sw, 0, 0, container) : defaultData,
-		sc: textAnimator_animatables.sc ? getProp(elem, textAnimator_animatables.sc, 1, 0, container) : defaultData,
-		fc: textAnimator_animatables.fc ? getProp(elem, textAnimator_animatables.fc, 1, 0, container) : defaultData,
-		fh: textAnimator_animatables.fh ? getProp(elem, textAnimator_animatables.fh, 0, 0, container) : defaultData,
-		fs: textAnimator_animatables.fs ? getProp(elem, textAnimator_animatables.fs, 0, 0.01, container) : defaultData,
-		fb: textAnimator_animatables.fb ? getProp(elem, textAnimator_animatables.fb, 0, 0.01, container) : defaultData,
-		t: textAnimator_animatables.t ? getProp(elem, textAnimator_animatables.t, 0, 0, container) : defaultData
-	};
-
-	this.s = TextSelectorProp.getTextSelectorProp(elem,animatorProps.s, container);
-    this.s.t = animatorProps.s.t;
-}
-function LetterProps(o, sw, sc, fc, m, p){
-=======
 extendPrototype([DynamicPropertyContainer], TextAnimatorProperty);
 
 /* global PropertyFactory, degToRads, TextSelectorProp */
@@ -6420,7 +5573,6 @@ LetterProps.prototype.update = function (o, sw, sc, fc, m, p) {
   var updated = false;
 
   if (this.o !== o) {
->>>>>>> master
     this.o = o;
     this._mdf.o = true;
     updated = true;
@@ -6447,178 +5599,6 @@ LetterProps.prototype.update = function (o, sw, sc, fc, m, p) {
   }
   if (p.length && (this.p[0] !== p[0] || this.p[1] !== p[1] || this.p[4] !== p[4] || this.p[5] !== p[5] || this.p[12] !== p[12] || this.p[13] !== p[13])) {
     this.p = p;
-<<<<<<< HEAD
-    this._mdf = {
-    	o: true,
-    	sw: !!sw,
-    	sc: !!sc,
-    	fc: !!fc,
-    	m: true,
-    	p: true
-    };
-}
-
-LetterProps.prototype.update = function(o, sw, sc, fc, m, p) {
-	this._mdf.o = false;
-	this._mdf.sw = false;
-	this._mdf.sc = false;
-	this._mdf.fc = false;
-	this._mdf.m = false;
-	this._mdf.p = false;
-	var updated = false;
-
-	if(this.o !== o) {
-		this.o = o;
-		this._mdf.o = true;
-		updated = true;
-	}
-	if(this.sw !== sw) {
-		this.sw = sw;
-		this._mdf.sw = true;
-		updated = true;
-	}
-	if(this.sc !== sc) {
-		this.sc = sc;
-		this._mdf.sc = true;
-		updated = true;
-	}
-	if(this.fc !== fc) {
-		this.fc = fc;
-		this._mdf.fc = true;
-		updated = true;
-	}
-	if(this.m !== m) {
-		this.m = m;
-		this._mdf.m = true;
-		updated = true;
-	}
-	if(p.length && (this.p[0] !== p[0] || this.p[1] !== p[1] || this.p[4] !== p[4] || this.p[5] !== p[5] || this.p[12] !== p[12] || this.p[13] !== p[13])) {
-		this.p = p;
-		this._mdf.p = true;
-		updated = true;
-	}
-	return updated;
-};
-function TextProperty(elem, data){
-	this._frameId = initialDefaultFrame;
-	this.pv = '';
-	this.v = '';
-	this.kf = false;
-	this._isFirstFrame = true;
-	this._mdf = false;
-    this.data = data;
-	this.elem = elem;
-    this.comp = this.elem.comp;
-	this.keysIndex = 0;
-    this.canResize = false;
-    this.minimumFontSize = 1;
-    this.effectsSequence = [];
-	this.currentData = {
-		ascent: 0,
-        boxWidth: this.defaultBoxWidth,
-        f: '',
-        fStyle: '',
-        fWeight: '',
-        fc: '',
-        j: '',
-        justifyOffset: '',
-        l: [],
-        lh: 0,
-        lineWidths: [],
-        ls: '',
-        of: '',
-        s: '',
-        sc: '',
-        sw: 0,
-        t: 0,
-        tr: 0,
-        sz:0,
-        ps:null,
-        fillColorAnim: false,
-        strokeColorAnim: false,
-        strokeWidthAnim: false,
-        yOffset: 0,
-        finalSize:0,
-        finalText:[],
-        finalLineHeight: 0,
-        __complete: false
-
-	};
-    this.copyData(this.currentData, this.data.d.k[0].s);
-
-    if(!this.searchProperty()) {
-        this.completeTextData(this.currentData);
-    }
-}
-
-TextProperty.prototype.defaultBoxWidth = [0,0];
-
-TextProperty.prototype.copyData = function(obj, data) {
-    for(var s in data) {
-        if(data.hasOwnProperty(s)) {
-            obj[s] = data[s];
-        }
-    }
-    return obj;
-}
-
-TextProperty.prototype.setCurrentData = function(data){
-    if(!data.__complete) {
-        this.completeTextData(data);
-    }
-    this.currentData = data;
-    this.currentData.boxWidth = this.currentData.boxWidth || this.defaultBoxWidth;
-    this._mdf = true;
-};
-
-TextProperty.prototype.searchProperty = function() {
-    return this.searchKeyframes();
-};
-
-TextProperty.prototype.searchKeyframes = function() {
-    this.kf = this.data.d.k.length > 1;
-    if(this.kf) {
-        this.addEffect(this.getKeyframeValue.bind(this));
-    }
-    return this.kf;
-}
-
-TextProperty.prototype.addEffect = function(effectFunction) {
-	this.effectsSequence.push(effectFunction);
-    this.elem.addDynamicProperty(this);
-};
-
-TextProperty.prototype.getValue = function(_finalValue) {
-    if((this.elem.globalData.frameId === this.frameId || !this.effectsSequence.length) && !_finalValue) {
-        return;
-    }
-    this.currentData.t = this.data.d.k[this.keysIndex].s.t;
-    var currentValue = this.currentData;
-    var currentIndex = this.keysIndex;
-    if(this.lock) {
-        this.setCurrentData(this.currentData);
-        return;
-    }
-    this.lock = true;
-    this._mdf = false;
-    var multipliedValue;
-    var i, len = this.effectsSequence.length;
-    var finalValue = _finalValue || this.data.d.k[this.keysIndex].s;
-    for(i = 0; i < len; i += 1) {
-        //Checking if index changed to prevent creating a new object every time the expression updates.
-        if(currentIndex !== this.keysIndex) {
-            finalValue = this.effectsSequence[i](finalValue, finalValue.t);
-        } else {
-            finalValue = this.effectsSequence[i](this.currentData, finalValue.t);
-        }
-    }
-    if(currentValue !== finalValue) {
-        this.setCurrentData(finalValue);
-    }
-    this.pv = this.v = this.currentData;
-    this.lock = false;
-    this.frameId = this.elem.globalData.frameId;
-=======
     this._mdf.p = true;
     updated = true;
   }
@@ -6678,7 +5658,6 @@ function TextProperty(elem, data) {
   if (!this.searchProperty()) {
     this.completeTextData(this.currentData);
   }
->>>>>>> master
 }
 
 TextProperty.prototype.defaultBoxWidth = [0, 0];
@@ -7050,17 +6029,9 @@ TextProperty.prototype.setMinimumFontSize = function (_fontValue) {
   this.recalculate(this.keysIndex);
   this.elem.addDynamicProperty(this);
 };
-<<<<<<< HEAD
-
-var TextSelectorProp = (function(){
-    var max = Math.max;
-    var min = Math.min;
-    var floor = Math.floor;
-=======
 
 /* global extendPrototype, BezierFactory, PropertyFactory, DynamicPropertyContainer */
 /* exported TextSelectorProp */
->>>>>>> master
 
 var TextSelectorProp = (function () {
   var max = Math.max;
@@ -7203,54 +6174,6 @@ var TextSelectorProp = (function () {
     return new TextSelectorPropFactory(elem, data, arr);
   }
 
-<<<<<<< HEAD
-    
-var pool_factory = (function() {
-	return function(initialLength, _create, _release, _clone) {
-
-		var _length = 0;
-		var _maxLength = initialLength;
-		var pool = createSizedArray(_maxLength);
-
-		var ob = {
-			newElement: newElement,
-			release: release
-		};
-
-		function newElement(){
-			var element;
-			if(_length){
-				_length -= 1;
-				element = pool[_length];
-			} else {
-				element = _create();
-			}
-			return element;
-		}
-
-		function release(element) {
-			if(_length === _maxLength) {
-				pool = pooling.double(pool);
-				_maxLength = _maxLength*2;
-			}
-			if (_release) {
-				_release(element);
-			}
-			pool[_length] = element;
-			_length += 1;
-		}
-
-		function clone() {
-			var clonedElement = newElement();
-			return _clone(clonedElement);
-		}
-
-		return ob;
-	};
-}());
-
-var pooling = (function(){
-=======
   return {
     getTextSelectorProp: getTextSelectorProp,
   };
@@ -7258,7 +6181,6 @@ var pooling = (function(){
 
 /* global createSizedArray, pooling */
 /* exported poolFactory */
->>>>>>> master
 
 var poolFactory = (function () {
   return function (initialLength, _create, _release) {
@@ -7266,141 +6188,6 @@ var poolFactory = (function () {
     var _maxLength = initialLength;
     var pool = createSizedArray(_maxLength);
 
-<<<<<<< HEAD
-	return {
-		double: double
-	};
-}());
-var point_pool = (function(){
-
-	function create() {
-		return createTypedArray('float32', 2);
-	}
-	return pool_factory(8, create);
-}());
-var shape_pool = (function(){
-
-	function create() {
-		return new ShapePath();
-	}
-
-	function release(shapePath) {
-		var len = shapePath._length, i;
-		for(i = 0; i < len; i += 1) {
-			point_pool.release(shapePath.v[i]);
-			point_pool.release(shapePath.i[i]);
-			point_pool.release(shapePath.o[i]);
-			shapePath.v[i] = null;
-			shapePath.i[i] = null;
-			shapePath.o[i] = null;
-		}
-		shapePath._length = 0;
-		shapePath.c = false;
-	}
-
-	function clone(shape) {
-		var cloned = factory.newElement();
-		var i, len = shape._length === undefined ? shape.v.length : shape._length;
-		cloned.setLength(len);
-		cloned.c = shape.c;
-		var pt;
-		
-		for(i = 0; i < len; i += 1) {
-			cloned.setTripleAt(shape.v[i][0],shape.v[i][1],shape.o[i][0],shape.o[i][1],shape.i[i][0],shape.i[i][1], i);
-		}
-		return cloned;
-	}
-
-	var factory = pool_factory(4, create, release);
-	factory.clone = clone;
-
-	return factory;
-}());
-var shapeCollection_pool = (function(){
-	var ob = {
-		newShapeCollection: newShapeCollection,
-		release: release
-	};
-
-	var _length = 0;
-	var _maxLength = 4;
-	var pool = createSizedArray(_maxLength);
-
-	function newShapeCollection(){
-		var shapeCollection;
-		if(_length){
-			_length -= 1;
-			shapeCollection = pool[_length];
-		} else {
-			shapeCollection = new ShapeCollection();
-		}
-		return shapeCollection;
-	}
-
-	function release(shapeCollection) {
-		var i, len = shapeCollection._length;
-		for(i = 0; i < len; i += 1) {
-			shape_pool.release(shapeCollection.shapes[i]);
-		}
-		shapeCollection._length = 0;
-
-		if(_length === _maxLength) {
-			pool = pooling.double(pool);
-			_maxLength = _maxLength*2;
-		}
-		pool[_length] = shapeCollection;
-		_length += 1;
-	}
-
-	return ob;
-}());
-var segments_length_pool = (function(){
-
-	function create() {
-		return {
-			lengths: [],
-			totalLength: 0
-		};
-	}
-
-	function release(element) {
-		var i, len = element.lengths.length;
-		for(i=0;i<len;i+=1) {
-			bezier_length_pool.release(element.lengths[i]);
-		}
-		element.lengths.length = 0;
-	}
-
-	return pool_factory(8, create, release);
-}());
-var bezier_length_pool = (function(){
-
-	function create() {
-		return {
-            addedLength: 0,
-            percents: createTypedArray('float32', defaultCurveSegments),
-            lengths: createTypedArray('float32', defaultCurveSegments),
-        };
-	}
-	return pool_factory(8, create);
-}());
-function BaseRenderer(){}
-BaseRenderer.prototype.checkLayers = function(num){
-    var i, len = this.layers.length, data;
-    this.completeLayers = true;
-    for (i = len - 1; i >= 0; i--) {
-        if (!this.elements[i]) {
-            data = this.layers[i];
-            if(data.ip - data.st <= (num - this.layers[i].st) && data.op - data.st > (num - this.layers[i].st))
-            {
-                this.buildItem(i);
-            }
-        }
-        this.completeLayers = this.elements[i] ? this.completeLayers:false;
-    }
-    this.checkPendingElements();
-};
-=======
     var ob = {
       newElement: newElement,
       release: release,
@@ -7455,7 +6242,6 @@ var pointPool = (function () {
   }
   return poolFactory(8, create);
 }());
->>>>>>> master
 
 /* global ShapePath, pointPool, poolFactory */
 /* exported shapePool */
@@ -7535,55 +6321,6 @@ var shapeCollectionPool = (function () {
       pool = pooling.double(pool);
       _maxLength *= 2;
     }
-<<<<<<< HEAD
-}
-function SVGRenderer(animationItem, config){
-    this.animationItem = animationItem;
-    this.layers = null;
-    this.renderedFrame = -1;
-    this.svgElement = createNS('svg');
-    var ariaLabel = '';
-    if (config && config.title) {
-        var titleElement = createNS('title');
-        var titleId = createElementID();
-        titleElement.setAttribute('id', titleId);
-        titleElement.textContent = config.title;
-        this.svgElement.appendChild(titleElement);
-        ariaLabel += titleId;
-    }
-    if (config && config.description) {
-        var descElement = createNS('desc');
-        var descId = createElementID();
-        descElement.setAttribute('id', descId);
-        descElement.textContent = config.description;
-        this.svgElement.appendChild(descElement);
-        ariaLabel += ' ' + descId;
-    }
-    if (ariaLabel) {
-        this.svgElement.setAttribute('aria-labelledby', ariaLabel)
-    }
-    var defs = createNS( 'defs');
-    this.svgElement.appendChild(defs);
-    var maskElement = createNS('g');
-    this.svgElement.appendChild(maskElement);
-    this.layerElement = maskElement;
-    this.renderConfig = {
-        preserveAspectRatio: (config && config.preserveAspectRatio) || 'xMidYMid meet',
-        imagePreserveAspectRatio: (config && config.imagePreserveAspectRatio) || 'xMidYMid slice',
-        progressiveLoad: (config && config.progressiveLoad) || false,
-        hideOnTransparent: (config && config.hideOnTransparent === false) ? false : true,
-        viewBoxOnly: (config && config.viewBoxOnly) || false,
-        viewBoxSize: (config && config.viewBoxSize) || false,
-        className: (config && config.className) || '',
-        id: (config && config.id) || '',
-        focusable: config && config.focusable,
-        filterSize: {
-            width: config && config.filterSize && config.filterSize.width || '100%',
-            height: config && config.filterSize && config.filterSize.height || '100%',
-            x: config && config.filterSize && config.filterSize.x || '0%',
-            y: config && config.filterSize && config.filterSize.y || '0%',
-        }
-=======
     pool[_length] = shapeCollection;
     _length += 1;
   }
@@ -7599,18 +6336,9 @@ var segmentsLengthPool = (function () {
     return {
       lengths: [],
       totalLength: 0,
->>>>>>> master
     };
   }
 
-<<<<<<< HEAD
-    this.globalData = {
-        _mdf: false,
-        frameNum: -1,
-        defs: defs,
-        renderConfig: this.renderConfig,
-        baseGroup: this.layerElement
-=======
   function release(element) {
     var i;
     var len = element.lengths.length;
@@ -7632,7 +6360,6 @@ var bezierLengthPool = (function () {
       addedLength: 0,
       percents: createTypedArray('float32', defaultCurveSegments),
       lengths: createTypedArray('float32', defaultCurveSegments),
->>>>>>> master
     };
   }
   return poolFactory(8, create);
@@ -7838,6 +6565,7 @@ function SVGRenderer(animationItem, config) {
     frameNum: -1,
     defs: defs,
     renderConfig: this.renderConfig,
+    baseGroup: this.layerElement,
   };
   this.elements = [];
   this.pendingElements = [];
@@ -8090,134 +6818,6 @@ function MaskElement(data, element, globalData) {
       rect.setAttribute('height', this.element.comp.data.h || 0);
       currentMasks.push(rect);
     } else {
-<<<<<<< HEAD
-        this.layerElement.appendChild(newElement);
-    }
-};
-
-SVGRenderer.prototype.hide = function(){
-    this.layerElement.style.display = 'none';
-};
-
-SVGRenderer.prototype.show = function(){
-    this.layerElement.style.display = 'block';
-};
-
-function MaskElement(data,element,globalData) {
-    this.data = data;
-    this.element = element;
-    this.globalData = globalData;
-    this.storedData = [];
-    this.masksProperties = this.data.masksProperties || [];
-    this.maskElement = null;
-    var defs = this.globalData.defs;
-    var i, len = this.masksProperties ? this.masksProperties.length : 0;
-    this.viewData = createSizedArray(len);
-    this.solidPath = '';
-
-
-    var path, properties = this.masksProperties;
-    var count = 0;
-    var currentMasks = [];
-    var j, jLen;
-    var layerId = createElementID();
-    var rect, expansor, feMorph,x;
-    var maskType = 'clipPath', maskRef = 'clip-path';
-    for (i = 0; i < len; i++) {
-        if((properties[i].mode !== 'a' && properties[i].mode !== 'n')|| properties[i].inv || properties[i].o.k !== 100 || properties[i].o.x){
-            maskType = 'mask';
-            maskRef = 'mask';
-        }
-
-        if((properties[i].mode == 's' || properties[i].mode == 'i') && count === 0){
-            rect = createNS( 'rect');
-            rect.setAttribute('fill', '#ffffff');
-            rect.setAttribute('width', this.element.comp.data.w || 0);
-            rect.setAttribute('height', this.element.comp.data.h || 0);
-            currentMasks.push(rect);
-        } else {
-            rect = null;
-        }
-
-        path = createNS( 'path');
-        if(properties[i].mode == 'n') {
-            // TODO move this to a factory or to a constructor
-            this.viewData[i] = {
-                op: PropertyFactory.getProp(this.element,properties[i].o,0,0.01,this.element),
-                prop: ShapePropertyFactory.getShapeProp(this.element,properties[i],3),
-                elem: path,
-                lastPath: ''
-            };
-            defs.appendChild(path);
-            continue;
-        }
-        count += 1;
-
-        path.setAttribute('fill', properties[i].mode === 's' ? '#000000':'#ffffff');
-        path.setAttribute('clip-rule','nonzero');
-        var filterID;
-
-        if (properties[i].x.k !== 0) {
-            maskType = 'mask';
-            maskRef = 'mask';
-            x = PropertyFactory.getProp(this.element,properties[i].x,0,null,this.element);
-            filterID = createElementID();
-            expansor = createNS('filter');
-            expansor.setAttribute('id',filterID);
-            feMorph = createNS('feMorphology');
-            feMorph.setAttribute('operator','erode');
-            feMorph.setAttribute('in','SourceGraphic');
-            feMorph.setAttribute('radius','0');
-            expansor.appendChild(feMorph);
-            defs.appendChild(expansor);
-            path.setAttribute('stroke', properties[i].mode === 's' ? '#000000':'#ffffff');
-        } else {
-            feMorph = null;
-            x = null;
-        }
-
-        // TODO move this to a factory or to a constructor
-        this.storedData[i] = {
-             elem: path,
-             x: x,
-             expan: feMorph,
-            lastPath: '',
-            lastOperator:'',
-            filterId:filterID,
-            lastRadius:0
-        };
-        if(properties[i].mode == 'i'){
-            jLen = currentMasks.length;
-            var g = createNS('g');
-            for(j=0;j<jLen;j+=1){
-                g.appendChild(currentMasks[j]);
-            }
-            var mask = createNS('mask');
-            mask.setAttribute('mask-type','alpha');
-            mask.setAttribute('id',layerId+'_'+count);
-            mask.appendChild(path);
-            defs.appendChild(mask);
-            g.setAttribute('mask','url(' + locationHref + '#'+layerId+'_'+count+')');
-
-            currentMasks.length = 0;
-            currentMasks.push(g);
-        }else{
-            currentMasks.push(path);
-        }
-        if(properties[i].inv && !this.solidPath){
-            this.solidPath = this.createLayerSolidPath();
-        }
-        // TODO move this to a factory or to a constructor
-        this.viewData[i] = {
-            elem: path,
-            lastPath: '',
-            op: PropertyFactory.getProp(this.element,properties[i].o,0,0.01,this.element),
-            prop:ShapePropertyFactory.getShapeProp(this.element,properties[i],3),
-            invRect: rect
-        };
-        if(!this.viewData[i].prop.k){
-            this.drawPath(properties[i],this.viewData[i].prop.v,this.viewData[i]);
-=======
       rect = null;
     }
 
@@ -8272,7 +6872,6 @@ function MaskElement(data,element,globalData) {
         var g = createNS('g');
         for (j = 0; j < jLen; j += 1) {
           g.appendChild(currentMasks[j]);
->>>>>>> master
         }
         var mask = createNS('mask');
         mask.setAttribute('mask-type', 'alpha');
@@ -8450,15 +7049,6 @@ HierarchyElement.prototype = {
      * @function
      * Searches layer's parenting chain
      *
-<<<<<<< HEAD
-     */ 
-	checkParenting: function(){
-	    if (this.data.parent !== undefined){
-	        this.comp.buildElementParenting(this, this.data.parent, []);
-	    }
-	}
-};
-=======
      */
   checkParenting: function () {
     if (this.data.parent !== undefined) {
@@ -8467,7 +7057,6 @@ HierarchyElement.prototype = {
   },
 };
 
->>>>>>> master
 /**
  * @file
  * Handles element's layer frame update.
@@ -8513,10 +7102,6 @@ FrameElement.prototype = {
         }
       }
     }
-<<<<<<< HEAD
-};
-function TransformElement(){}
-=======
   },
   addDynamicProperty: function (prop) {
     if (this.dynamicProperties.indexOf(prop) === -1) {
@@ -8524,7 +7109,6 @@ function TransformElement(){}
     }
   },
 };
->>>>>>> master
 
 /* global TransformPropertyFactory, Matrix */
 
@@ -8571,17 +7155,6 @@ TransformElement.prototype = {
         mat = this.finalTransform.mProp.v.props;
         finalMat.cloneFromProps(mat);
         for (i = 0; i < len; i += 1) {
-<<<<<<< HEAD
-            ptNew = transforms[i].mat.applyToPointArray(0, 0, 0);
-            //ptNew = transforms[i].mat.applyToPointArray(pt[0],pt[1],pt[2]);
-            pt = [pt[0] - ptNew[0], pt[1] - ptNew[1], 0];
-        }
-        return pt;
-    },
-    mHelper: new Matrix()
-};
-function RenderableElement(){
-=======
           mat = this.hierarchy[i].finalTransform.mProp.v.props;
           finalMat.transform(mat[0], mat[1], mat[2], mat[3], mat[4], mat[5], mat[6], mat[7], mat[8], mat[9], mat[10], mat[11], mat[12], mat[13], mat[14], mat[15]);
         }
@@ -8617,7 +7190,6 @@ function RenderableElement(){
 };
 
 function RenderableElement() {
->>>>>>> master
 
 }
 
@@ -8699,16 +7271,12 @@ RenderableElement.prototype = {
     if (this.data.ty === 5) {
       return { w: this.data.textData.width, h: this.data.textData.height };
     }
-<<<<<<< HEAD
-};
-=======
     return { w: this.data.width, h: this.data.height };
   },
 };
 
 /* global extendPrototype, RenderableElement, createProxyFunction */
 
->>>>>>> master
 function RenderableDOMElement() {}
 
 (function () {
@@ -8738,15 +7306,6 @@ function RenderableDOMElement() {}
           var elem = this.baseElement || this.layerElement;
           elem.style.display = 'block';
         }
-<<<<<<< HEAD
-    };
-    extendPrototype([RenderableElement, createProxyFunction(_prototype)], RenderableDOMElement);
-}());
-function ProcessedElement(element, position) {
-	this.elem = element;
-	this.pos = position;
-}
-=======
         this.hidden = false;
         this._isFirstFrame = true;
       }
@@ -8789,7 +7348,6 @@ function ProcessedElement(element, position) {
 
 /* global createNS */
 
->>>>>>> master
 function SVGStyleData(data, level) {
   this.data = data;
   this.type = data.ty;
@@ -8801,18 +7359,11 @@ function SVGStyleData(data, level) {
   this.msElem = null;
 }
 
-<<<<<<< HEAD
-SVGStyleData.prototype.reset = function() {
-	this.d = '';
-	this._mdf = false;
-};
-=======
 SVGStyleData.prototype.reset = function () {
   this.d = '';
   this._mdf = false;
 };
 
->>>>>>> master
 function SVGShapeData(transformers, level, shape) {
   this.caches = [];
   this.styles = [];
@@ -8836,45 +7387,6 @@ function SVGShapeData(transformers, level, shape) {
   }
 }
 
-<<<<<<< HEAD
-SVGShapeData.prototype.setAsAnimated = function() {
-    this._isAnimated = true;
-}
-function SVGTransformData(mProps, op, container) {
-	this.transform = {
-		mProps: mProps,
-		op: op,
-		container: container
-	};
-	this.elements = [];
-    this._isAnimated = this.transform.mProps.dynamicProperties.length || this.transform.op.effectsSequence.length;
-}
-function SVGStrokeStyleData(elem, data, styleOb){
-	this.initDynamicPropertyContainer(elem);
-	this.getValue = this.iterateDynamicProperties;
-	this.o = PropertyFactory.getProp(elem,data.o,0,0.01,this);
-	this.w = PropertyFactory.getProp(elem,data.w,0,null,this);
-	this.d = new DashProperty(elem,data.d||{},'svg',this);
-	this.c = PropertyFactory.getProp(elem,data.c,1,255,this);
-	this.style = styleOb;
-    this._isAnimated = !!this._isAnimated;
-}
-
-extendPrototype([DynamicPropertyContainer], SVGStrokeStyleData);
-function SVGFillStyleData(elem, data, styleOb){
-	this.initDynamicPropertyContainer(elem);
-	this.getValue = this.iterateDynamicProperties;
-	this.o = PropertyFactory.getProp(elem,data.o,0,0.01,this);
-	this.c = PropertyFactory.getProp(elem,data.c,1,255,this);
-	this.style = styleOb;
-}
-
-extendPrototype([DynamicPropertyContainer], SVGFillStyleData);
-function SVGGradientFillStyleData(elem, data, styleOb){
-    this.initDynamicPropertyContainer(elem);
-    this.getValue = this.iterateDynamicProperties;
-    this.initGradientData(elem, data, styleOb);
-=======
 SVGShapeData.prototype.setAsAnimated = function () {
   this._isAnimated = true;
 };
@@ -8925,7 +7437,6 @@ function SVGGradientFillStyleData(elem, data, styleOb) {
   this.initDynamicPropertyContainer(elem);
   this.getValue = this.iterateDynamicProperties;
   this.initGradientData(elem, data, styleOb);
->>>>>>> master
 }
 
 SVGGradientFillStyleData.prototype.initGradientData = function (elem, data, styleOb) {
@@ -8996,233 +7507,6 @@ SVGGradientFillStyleData.prototype.setGradientOpacity = function (data, styleOb)
   }
 };
 
-<<<<<<< HEAD
-extendPrototype([DynamicPropertyContainer], SVGGradientFillStyleData);
-function SVGGradientStrokeStyleData(elem, data, styleOb){
-	this.initDynamicPropertyContainer(elem);
-	this.getValue = this.iterateDynamicProperties;
-	this.w = PropertyFactory.getProp(elem,data.w,0,null,this);
-	this.d = new DashProperty(elem,data.d||{},'svg',this);
-    this.initGradientData(elem, data, styleOb);
-    this._isAnimated = !!this._isAnimated;
-}
-
-extendPrototype([SVGGradientFillStyleData, DynamicPropertyContainer], SVGGradientStrokeStyleData);
-function ShapeGroupData() {
-	this.it = [];
-    this.prevViewData = [];
-    this.gr = createNS('g');
-}
-var SVGElementsRenderer = (function() {
-	var _identityMatrix = new Matrix();
-	var _matrixHelper = new Matrix();
-
-	var ob = {
-		createRenderFunction: createRenderFunction
-	}
-
-	function createRenderFunction(data) {
-	    var ty = data.ty;
-	    switch(data.ty) {
-	        case 'fl':
-	        return renderFill;
-	        case 'gf':
-	        return renderGradient;
-	        case 'gs':
-	        return renderGradientStroke;
-	        case 'st':
-	        return renderStroke;
-	        case 'sh':
-	        case 'el':
-	        case 'rc':
-	        case 'sr':
-	        return renderPath;
-	        case 'tr':
-	        return renderContentTransform;
-	    }
-	}
-
-	function renderContentTransform(styleData, itemData, isFirstFrame) {
-	    if(isFirstFrame || itemData.transform.op._mdf){
-	        itemData.transform.container.setAttribute('opacity',itemData.transform.op.v);
-	    }
-	    if(isFirstFrame || itemData.transform.mProps._mdf){
-	        itemData.transform.container.setAttribute('transform',itemData.transform.mProps.v.to2dCSS());
-	    }
-	}
-
-	function renderPath(styleData, itemData, isFirstFrame) {
-	    var j, jLen,pathStringTransformed,redraw,pathNodes,l, lLen = itemData.styles.length;
-	    var lvl = itemData.lvl;
-	    var paths, mat, props, iterations, k;
-	    for(l=0;l<lLen;l+=1){
-	        redraw = itemData.sh._mdf || isFirstFrame;
-	        if(itemData.styles[l].lvl < lvl){
-	            mat = _matrixHelper.reset();
-	            iterations = lvl - itemData.styles[l].lvl;
-	            k = itemData.transformers.length-1;
-	            while(!redraw && iterations > 0) {
-	                redraw = itemData.transformers[k].mProps._mdf || redraw;
-	                iterations --;
-	                k --;
-	            }
-	            if(redraw) {
-	                iterations = lvl - itemData.styles[l].lvl;
-	                k = itemData.transformers.length-1;
-	                while(iterations > 0) {
-	                    props = itemData.transformers[k].mProps.v.props;
-	                    mat.transform(props[0],props[1],props[2],props[3],props[4],props[5],props[6],props[7],props[8],props[9],props[10],props[11],props[12],props[13],props[14],props[15]);
-	                    iterations --;
-	                    k --;
-	                }
-	            }
-	        } else {
-	            mat = _identityMatrix;
-	        }
-	        paths = itemData.sh.paths;
-	        jLen = paths._length;
-	        if(redraw){
-	            pathStringTransformed = '';
-	            for(j=0;j<jLen;j+=1){
-	                pathNodes = paths.shapes[j];
-	                if(pathNodes && pathNodes._length){
-	                    pathStringTransformed += buildShapeString(pathNodes, pathNodes._length, pathNodes.c, mat);
-	                }
-	            }
-	            itemData.caches[l] = pathStringTransformed;
-	        } else {
-	            pathStringTransformed = itemData.caches[l];
-	        }
-	        itemData.styles[l].d += styleData.hd === true ? '' : pathStringTransformed;
-	        itemData.styles[l]._mdf = redraw || itemData.styles[l]._mdf;
-	    }
-	}
-
-	function renderFill (styleData,itemData, isFirstFrame){
-	    var styleElem = itemData.style;
-
-	    if(itemData.c._mdf || isFirstFrame){
-	        styleElem.pElem.setAttribute('fill','rgb('+bm_floor(itemData.c.v[0])+','+bm_floor(itemData.c.v[1])+','+bm_floor(itemData.c.v[2])+')');
-	    }
-	    if(itemData.o._mdf || isFirstFrame){
-	        styleElem.pElem.setAttribute('fill-opacity',itemData.o.v);
-	    }
-	};
-
-	function renderGradientStroke (styleData, itemData, isFirstFrame) {
-	    renderGradient(styleData, itemData, isFirstFrame);
-	    renderStroke(styleData, itemData, isFirstFrame);
-	}
-
-	function renderGradient(styleData, itemData, isFirstFrame) {
-	    var gfill = itemData.gf;
-	    var hasOpacity = itemData.g._hasOpacity;
-	    var pt1 = itemData.s.v, pt2 = itemData.e.v;
-
-	    if (itemData.o._mdf || isFirstFrame) {
-	        var attr = styleData.ty === 'gf' ? 'fill-opacity' : 'stroke-opacity';
-	        itemData.style.pElem.setAttribute(attr, itemData.o.v);
-	    }
-	    if (itemData.s._mdf || isFirstFrame) {
-	        var attr1 = styleData.t === 1 ? 'x1' : 'cx';
-	        var attr2 = attr1 === 'x1' ? 'y1' : 'cy';
-	        gfill.setAttribute(attr1, pt1[0]);
-	        gfill.setAttribute(attr2, pt1[1]);
-	        if (hasOpacity && !itemData.g._collapsable) {
-	            itemData.of.setAttribute(attr1, pt1[0]);
-	            itemData.of.setAttribute(attr2, pt1[1]);
-	        }
-	    }
-	    var stops, i, len, stop;
-	    if (itemData.g._cmdf || isFirstFrame) {
-	        stops = itemData.cst;
-	        var cValues = itemData.g.c;
-	        len = stops.length;
-	        for (i = 0; i < len; i += 1){
-	            stop = stops[i];
-	            stop.setAttribute('offset', cValues[i * 4] + '%');
-	            stop.setAttribute('stop-color','rgb('+ cValues[i * 4 + 1] + ',' + cValues[i * 4 + 2] + ','+cValues[i * 4 + 3] + ')');
-	        }
-	    }
-	    if (hasOpacity && (itemData.g._omdf || isFirstFrame)) {
-	        var oValues = itemData.g.o;
-	        if(itemData.g._collapsable) {
-	            stops = itemData.cst;
-	        } else {
-	            stops = itemData.ost;
-	        }
-	        len = stops.length;
-	        for (i = 0; i < len; i += 1) {
-	            stop = stops[i];
-	            if(!itemData.g._collapsable) {
-	                stop.setAttribute('offset', oValues[i * 2] + '%');
-	            }
-	            stop.setAttribute('stop-opacity', oValues[i * 2 + 1]);
-	        }
-	    }
-	    if (styleData.t === 1) {
-	        if (itemData.e._mdf  || isFirstFrame) {
-	            gfill.setAttribute('x2', pt2[0]);
-	            gfill.setAttribute('y2', pt2[1]);
-	            if (hasOpacity && !itemData.g._collapsable) {
-	                itemData.of.setAttribute('x2', pt2[0]);
-	                itemData.of.setAttribute('y2', pt2[1]);
-	            }
-	        }
-	    } else {
-	        var rad;
-	        if (itemData.s._mdf || itemData.e._mdf || isFirstFrame) {
-	            rad = Math.sqrt(Math.pow(pt1[0] - pt2[0], 2) + Math.pow(pt1[1] - pt2[1], 2));
-	            gfill.setAttribute('r', rad);
-	            if(hasOpacity && !itemData.g._collapsable){
-	                itemData.of.setAttribute('r', rad);
-	            }
-	        }
-	        if (itemData.e._mdf || itemData.h._mdf || itemData.a._mdf || isFirstFrame) {
-	            if (!rad) {
-	                rad = Math.sqrt(Math.pow(pt1[0] - pt2[0], 2) + Math.pow(pt1[1] - pt2[1], 2));
-	            }
-	            var ang = Math.atan2(pt2[1] - pt1[1], pt2[0] - pt1[0]);
-
-	            var percent = itemData.h.v >= 1 ? 0.99 : itemData.h.v <= -1 ? -0.99: itemData.h.v;
-	            var dist = rad * percent;
-	            var x = Math.cos(ang + itemData.a.v) * dist + pt1[0];
-	            var y = Math.sin(ang + itemData.a.v) * dist + pt1[1];
-	            gfill.setAttribute('fx', x);
-	            gfill.setAttribute('fy', y);
-	            if (hasOpacity && !itemData.g._collapsable) {
-	                itemData.of.setAttribute('fx', x);
-	                itemData.of.setAttribute('fy', y);
-	            }
-	        }
-	        //gfill.setAttribute('fy','200');
-	    }
-	};
-
-	function renderStroke(styleData, itemData, isFirstFrame) {
-	    var styleElem = itemData.style;
-	    var d = itemData.d;
-	    if (d && (d._mdf || isFirstFrame) && d.dashStr) {
-	        styleElem.pElem.setAttribute('stroke-dasharray', d.dashStr);
-	        styleElem.pElem.setAttribute('stroke-dashoffset', d.dashoffset[0]);
-	    }
-	    if(itemData.c && (itemData.c._mdf || isFirstFrame)){
-	        styleElem.pElem.setAttribute('stroke','rgb(' + bm_floor(itemData.c.v[0]) + ',' + bm_floor(itemData.c.v[1]) + ',' + bm_floor(itemData.c.v[2]) + ')');
-	    }
-	    if(itemData.o._mdf || isFirstFrame){
-	        styleElem.pElem.setAttribute('stroke-opacity', itemData.o.v);
-	    }
-	    if(itemData.w._mdf || isFirstFrame){
-	        styleElem.pElem.setAttribute('stroke-width', itemData.w.v);
-	        if(styleElem.msElem){
-	            styleElem.msElem.setAttribute('stroke-width', itemData.w.v);
-	        }
-	    }
-	};
-
-	return ob;
-}())
-=======
 extendPrototype([DynamicPropertyContainer], SVGGradientFillStyleData);
 
 /* global PropertyFactory, DashProperty, extendPrototype, SVGGradientFillStyleData, DynamicPropertyContainer */
@@ -9482,7 +7766,6 @@ var SVGElementsRenderer = (function () {
 
 /* global Matrix */
 
->>>>>>> master
 function ShapeTransformManager() {
   this.sequences = {};
   this.sequenceList = [];
@@ -9490,58 +7773,6 @@ function ShapeTransformManager() {
 }
 
 ShapeTransformManager.prototype = {
-<<<<<<< HEAD
-	addTransformSequence: function(transforms) {
-		var i, len = transforms.length;
-		var key = '_';
-		for(i = 0; i < len; i += 1) {
-			key += transforms[i].transform.key + '_';
-		}
-		var sequence = this.sequences[key];
-		if(!sequence) {
-			sequence = {
-				transforms: [].concat(transforms),
-				finalTransform: new Matrix(),
-				_mdf: false
-			};
-			this.sequences[key] = sequence;
-			this.sequenceList.push(sequence);
-		}
-		return sequence;
-	},
-	processSequence: function(sequence, isFirstFrame) {
-		var i = 0, len = sequence.transforms.length, _mdf = isFirstFrame;
-		while (i < len && !isFirstFrame) {
-			if (sequence.transforms[i].transform.mProps._mdf) {
-				_mdf = true;
-				break;
-			}
-			i += 1
-		}
-		if (_mdf) {
-			var props;
-			sequence.finalTransform.reset();
-			for (i = len - 1; i >= 0; i -= 1) {
-		        props = sequence.transforms[i].transform.mProps.v.props;
-		        sequence.finalTransform.transform(props[0],props[1],props[2],props[3],props[4],props[5],props[6],props[7],props[8],props[9],props[10],props[11],props[12],props[13],props[14],props[15]);
-			}
-		}
-		sequence._mdf = _mdf;
-		
-	},
-	processSequences: function(isFirstFrame) {
-		var i, len = this.sequenceList.length;
-		for (i = 0; i < len; i += 1) {
-			this.processSequence(this.sequenceList[i], isFirstFrame);
-		}
-
-	},
-	getNewKey: function() {
-		return '_' + this.transform_key_count++;
-	}
-}
-function BaseElement(){
-=======
   addTransformSequence: function (transforms) {
     var i;
     var len = transforms.length;
@@ -9599,7 +7830,6 @@ function BaseElement(){
 TextExpressionInterface, getBlendMode,createElementID, EffectsManager */
 
 function BaseElement() {
->>>>>>> master
 }
 
 BaseElement.prototype = {
@@ -9651,16 +7881,6 @@ BaseElement.prototype = {
     if (!this.data.sr) {
       this.data.sr = 1;
     }
-<<<<<<< HEAD
-    ,sourceRectAtTime: function(){}
-}
-function NullElement(data,globalData,comp){
-    this.initFrame();
-	this.initBaseData(data, globalData, comp);
-    this.initFrame();
-    this.initTransform(data, globalData, comp);
-    this.initHierarchy();
-=======
     // effects manager
     this.effectsManager = new EffectsManager(this.data, this, this.dynamicProperties);
   },
@@ -9678,7 +7898,6 @@ function NullElement(data, globalData, comp) {
   this.initFrame();
   this.initTransform(data, globalData, comp);
   this.initHierarchy();
->>>>>>> master
 }
 
 NullElement.prototype.prepareFrame = function (num) {
@@ -9701,95 +7920,6 @@ NullElement.prototype.sourceRectAtTime = function () {
 NullElement.prototype.hide = function () {
 };
 
-<<<<<<< HEAD
-extendPrototype([BaseElement,TransformElement,HierarchyElement,FrameElement], NullElement);
-
-function SVGBaseElement(){
-}
-
-SVGBaseElement.prototype = {
-    initRendererElement: function() {
-        this.layerElement = createNS('g');
-    },
-    createContainerElements: function(){
-        this.matteElement = createNS('g');
-        this.transformedElement = this.layerElement;
-        this.maskedElement = this.layerElement;
-        this._sizeChanged = false;
-        var layerElementParent = null;
-
-        //If this layer acts as a mask for the following layer
-        var filId, fil, gg;
-
-        // Global mask
-        if (this.data.lbl && this.data.lbl == 13) {
-            var maskGroup = createNS('mask');
-            maskGroup.setAttribute('id', this.layerId);
-            maskGroup.setAttribute('mask-type','alpha');
-            var maskGrouper = createNS('g');
-            maskGroup.appendChild(maskGrouper);
-            filId = createElementID();
-            fil = filtersFactory.createFilter(filId);
-
-            var feCTr = createNS('feComponentTransfer');
-            feCTr.setAttribute('in','SourceGraphic');
-            fil.appendChild(feCTr);
-            var feFunc = createNS('feFuncA');
-            feFunc.setAttribute('type','table');
-            feFunc.setAttribute('tableValues','1.0 0.0');
-            feCTr.appendChild(feFunc);
-            
-            this.globalData.defs.appendChild(fil);
-            var alphaRect = createNS('rect');
-            alphaRect.setAttribute('width',  this.comp.data.w);
-            alphaRect.setAttribute('height', this.comp.data.h);
-            alphaRect.setAttribute('x','0');
-            alphaRect.setAttribute('y','0');
-            alphaRect.setAttribute('fill','#ffffff');
-            alphaRect.setAttribute('opacity','0');
-            maskGrouper.setAttribute('filter', 'url(' + locationHref + '#'+filId+')');
-            maskGrouper.appendChild(alphaRect);
-            maskGrouper.appendChild(this.layerElement);
-            layerElementParent = maskGrouper;
-            
-            this.globalData.defs.appendChild(maskGroup);
-
-            this.globalData.baseGroup.setAttribute("mask", "url(" + locationHref + "#" + this.layerId + ")");
-            
-        } else if (this.data.td) {
-            if (this.data.td == 3 || this.data.td == 1) {
-                var masker = createNS('mask');
-                masker.setAttribute('id', this.layerId);
-                masker.setAttribute('mask-type', this.data.td == 3 ? 'luminance' : 'alpha');
-                masker.appendChild(this.layerElement);
-                layerElementParent = masker;
-                this.globalData.defs.appendChild(masker);
-                // This is only for IE and Edge when mask if of type alpha
-                if (!featureSupport.maskType && this.data.td == 1) {
-                    masker.setAttribute('mask-type', 'luminance');
-                    filId = createElementID();
-                    fil = filtersFactory.createFilter(filId);
-                    this.globalData.defs.appendChild(fil);
-                    fil.appendChild(filtersFactory.createAlphaToLuminanceFilter());
-                    gg = createNS('g');
-                    gg.appendChild(this.layerElement);
-                    layerElementParent = gg;
-                    masker.appendChild(gg);
-                    gg.setAttribute('filter','url(' + locationHref + '#' + filId + ')');
-                }
-            } else if(this.data.td == 2) {
-                var maskGroup = createNS('mask');
-                maskGroup.setAttribute('id', this.layerId);
-                maskGroup.setAttribute('mask-type','alpha');
-                var maskGrouper = createNS('g');
-                maskGroup.appendChild(maskGrouper);
-                filId = createElementID();
-                fil = filtersFactory.createFilter(filId);
-                ////
-
-                // This solution doesn't work on Android when meta tag with viewport attribute is set
-                /*var feColorMatrix = createNS('feColorMatrix');
-=======
 extendPrototype([BaseElement, TransformElement, HierarchyElement, FrameElement], NullElement);
 
 /* global filtersFactory, featureSupport, filtersFactory, createElementID, createNS, MaskElement, SVGEffects, locationHref */
@@ -9811,7 +7941,40 @@ SVGBaseElement.prototype = {
     var filId;
     var fil;
     var gg;
-    if (this.data.td) {
+    if (this.data.lbl && this.data.lbl === 13) {
+      var globalMaskGroup = createNS('mask');
+      globalMaskGroup.setAttribute('id', this.layerId);
+      globalMaskGroup.setAttribute('mask-type', 'alpha');
+      var globalMaskGrouper = createNS('g');
+      globalMaskGroup.appendChild(globalMaskGrouper);
+      filId = createElementID();
+      fil = filtersFactory.createFilter(filId);
+
+      var globalFeCTr = createNS('feComponentTransfer');
+      globalFeCTr.setAttribute('in', 'SourceGraphic');
+      fil.appendChild(globalFeCTr);
+      var globalFeFunc = createNS('feFuncA');
+      globalFeFunc.setAttribute('type', 'table');
+      globalFeFunc.setAttribute('tableValues', '1.0 0.0');
+      globalFeCTr.appendChild(globalFeFunc);
+
+      this.globalData.defs.appendChild(fil);
+      var globalAlphaRect = createNS('rect');
+      globalAlphaRect.setAttribute('width', this.comp.data.w);
+      globalAlphaRect.setAttribute('height', this.comp.data.h);
+      globalAlphaRect.setAttribute('x', '0');
+      globalAlphaRect.setAttribute('y', '0');
+      globalAlphaRect.setAttribute('fill', '#ffffff');
+      globalAlphaRect.setAttribute('opacity', '0');
+      globalMaskGrouper.setAttribute('filter', 'url(' + locationHref + '#' + filId + ')');
+      globalMaskGrouper.appendChild(globalAlphaRect);
+      globalMaskGrouper.appendChild(this.layerElement);
+      layerElementParent = globalMaskGrouper;
+
+      this.globalData.defs.appendChild(globalMaskGroup);
+
+      this.globalData.baseGroup.setAttribute('mask', 'url(' + locationHref + '#' + this.layerId + ')');
+    } else if (this.data.td) {
       if (this.data.td == 3 || this.data.td == 1) { // eslint-disable-line eqeqeq
         var masker = createNS('mask');
         masker.setAttribute('id', this.layerId);
@@ -9841,10 +8004,8 @@ SVGBaseElement.prototype = {
         filId = createElementID();
         fil = filtersFactory.createFilter(filId);
         /// /
-
         // This solution doesn't work on Android when meta tag with viewport attribute is set
         /* var feColorMatrix = createNS('feColorMatrix');
->>>>>>> master
                 feColorMatrix.setAttribute('type', 'matrix');
                 feColorMatrix.setAttribute('color-interpolation-filters', 'sRGB');
                 feColorMatrix.setAttribute('values','1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 -1 1');
@@ -9918,108 +8079,6 @@ SVGBaseElement.prototype = {
         this.layerElement.setAttribute('clip-path', 'url(' + locationHref + '#' + clipId + ')');
       }
     }
-<<<<<<< HEAD
-};
-function IShapeElement(){
-}
-
-IShapeElement.prototype = {
-    addShapeToModifiers: function(data) {
-        var i, len = this.shapeModifiers.length;
-        for(i=0;i<len;i+=1){
-            this.shapeModifiers[i].addShape(data);
-        }
-    },
-    isShapeInAnimatedModifiers: function(data) {
-        var i = 0, len = this.shapeModifiers.length;
-        while(i < len) {
-            if(this.shapeModifiers[i].isAnimatedWithShape(data)) {
-                return true;
-            }
-        }
-        return false;
-    },
-    renderModifiers: function() {
-        if(!this.shapeModifiers.length){
-            return;
-        }
-        var i, len = this.shapes.length;
-        for(i=0;i<len;i+=1){
-            this.shapes[i].sh.reset();
-        }
-
-        len = this.shapeModifiers.length;
-        for(i=len-1;i>=0;i-=1){
-            this.shapeModifiers[i].processShapes(this._isFirstFrame);
-        }
-    },
-    lcEnum: {
-        '1': 'butt',
-        '2': 'round',
-        '3': 'square'
-    },
-    ljEnum: {
-        '1': 'miter',
-        '2': 'round',
-        '3': 'bevel'
-    },
-    searchProcessedElement: function(elem){
-        var elements = this.processedElements;
-        var i = 0, len = elements.length;
-        while (i < len) {
-            if (elements[i].elem === elem) {
-                return elements[i].pos;
-            }
-            i += 1;
-        }
-        return 0;
-    },
-    addProcessedElement: function(elem, pos){
-        var elements = this.processedElements;
-        var i = elements.length;
-        while(i) {
-            i -= 1;
-            if (elements[i].elem === elem) {
-                elements[i].pos = pos;
-                return;
-            }
-        }
-        elements.push(new ProcessedElement(elem, pos));
-    },
-    prepareFrame: function(num) {
-        this.prepareRenderableFrame(num);
-        this.prepareProperties(num, this.isInRange);
-    }
-};
-function ITextElement(){
-}
-
-ITextElement.prototype.initElement = function(data,globalData,comp){
-    this.lettersChangedFlag = true;
-    this.initFrame();
-    this.initBaseData(data, globalData, comp);
-    this.textProperty = new TextProperty(this, data.t, this.dynamicProperties);
-    this.textAnimator = new TextAnimatorProperty(data.t, this.renderType, this);
-    this.initTransform(data, globalData, comp);
-    this.initHierarchy();
-    this.initRenderable();
-    this.initRendererElement();
-    this.createContainerElements();
-    this.createRenderableComponents();
-    this.createContent();
-    this.hide();
-    this.textAnimator.searchProperties(this.dynamicProperties);
-};
-
-ITextElement.prototype.prepareFrame = function(num) {
-    this._mdf = false;
-    this.prepareRenderableFrame(num);
-    this.prepareProperties(num, this.isInRange);
-    if(this.textProperty._mdf || this.textProperty._isFirstFrame) {
-        this.buildNewText();
-        this.textProperty._isFirstFrame = false;
-        this.textProperty._mdf = false;
-=======
     if (this.data.bm !== 0) {
       this.setBlendMode();
     }
@@ -10027,7 +8086,6 @@ ITextElement.prototype.prepareFrame = function(num) {
   renderElement: function () {
     if (this.finalTransform._matMdf) {
       this.transformedElement.setAttribute('transform', this.finalTransform.mat.to2dCSS());
->>>>>>> master
     }
     if (this.finalTransform._opMdf) {
       this.transformedElement.setAttribute('opacity', this.finalTransform.mProp.o.v);
@@ -10077,42 +8135,11 @@ IShapeElement.prototype = {
         return true;
       }
     }
-<<<<<<< HEAD
-    matrixHelper.translate(xPos, yPos, 0);
-};
-
-
-ITextElement.prototype.buildColor = function(colorData) {
-    return 'rgb(' + Math.round(colorData[0]*255) + ',' + Math.round(colorData[1]*255) + ',' + Math.round(colorData[2]*255) + ')';
-};
-
-ITextElement.prototype.emptyProp = new LetterProps();
-
-ITextElement.prototype.destroy = function(){
-    
-};
-function ICompElement(){}
-
-extendPrototype([BaseElement, TransformElement, HierarchyElement, FrameElement, RenderableDOMElement], ICompElement);
-
-ICompElement.prototype.initElement = function(data,globalData,comp) {
-    this.initFrame();
-    this.initBaseData(data, globalData, comp);
-    this.initTransform(data, globalData, comp);
-    this.initRenderable();
-    this.initHierarchy();
-    this.initRendererElement();
-    this.createContainerElements();
-    this.createRenderableComponents();
-    if(this.data.xt || !globalData.progressiveLoad){
-        this.buildAllItems();
-=======
     return false;
   },
   renderModifiers: function () {
     if (!this.shapeModifiers.length) {
       return;
->>>>>>> master
     }
     var i;
     var len = this.shapes.length;
@@ -10121,8 +8148,14 @@ ICompElement.prototype.initElement = function(data,globalData,comp) {
     }
 
     len = this.shapeModifiers.length;
+    var shouldBreakProcess;
     for (i = len - 1; i >= 0; i -= 1) {
-      this.shapeModifiers[i].processShapes(this._isFirstFrame);
+      shouldBreakProcess = this.shapeModifiers[i].processShapes(this._isFirstFrame);
+      // workaround to fix cases where a repeater resets the shape so the following processes get called twice
+      // TODO: find a better solution for this
+      if (shouldBreakProcess) {
+        break;
+      }
     }
   },
   lcEnum: {
@@ -10162,130 +8195,12 @@ ICompElement.prototype.initElement = function(data,globalData,comp) {
   prepareFrame: function (num) {
     this.prepareRenderableFrame(num);
     this.prepareProperties(num, this.isInRange);
-<<<<<<< HEAD
-    if(!this.isInRange && !this.data.xt){
-        return;
-    }
-
-    if (!this.tm._placeholder) {
-        var timeRemapped = this.tm.v;
-        if(timeRemapped === this.data.op){
-            timeRemapped = this.data.op - 1;
-        }
-        this.renderedFrame = timeRemapped;
-    } else {
-        this.renderedFrame = num/this.data.sr;
-    }
-    var i,len = this.elements.length;
-    if(!this.completeLayers){
-        this.checkLayers(this.renderedFrame);
-    }
-    //This iteration needs to be backwards because of how expressions connect between each other
-    for( i = len - 1; i >= 0; i -= 1 ){
-        if(this.completeLayers || this.elements[i]){
-            this.elements[i].prepareFrame(this.renderedFrame - this.layers[i].st);
-            if(this.elements[i]._mdf) {
-                this._mdf = true;
-            }
-        }
-    }
-};
-
-ICompElement.prototype.renderInnerContent = function() {
-    var i,len = this.layers.length;
-    for( i = 0; i < len; i += 1 ){
-        if(this.completeLayers || this.elements[i]){
-            this.elements[i].renderFrame();
-        }
-    }
-};
-
-ICompElement.prototype.setElements = function(elems){
-    this.elements = elems;
-};
-
-ICompElement.prototype.getElements = function(){
-    return this.elements;
-};
-
-ICompElement.prototype.destroyElements = function(){
-    var i,len = this.layers.length;
-    for( i = 0; i < len; i+=1 ){
-        if(this.elements[i]){
-            this.elements[i].destroy();
-        }
-    }
-};
-
-ICompElement.prototype.destroy = function(){
-    this.destroyElements();
-    this.destroyBaseElement();
-};
-
-function IImageElement(data,globalData,comp){
-    this.assetData = globalData.getAssetData(data.refId);
-    this.initElement(data,globalData,comp);
-    this.sourceRect = {top:0,left:0,width:this.assetData.w,height:this.assetData.h};
-}
-
-extendPrototype([BaseElement,TransformElement,SVGBaseElement,HierarchyElement,FrameElement,RenderableDOMElement], IImageElement);
-
-IImageElement.prototype.createContent = function(){
-
-    var assetPath = this.globalData.getAssetsPath(this.assetData);
-
-    this.innerElem = createNS('image');
-    this.innerElem.setAttribute('width',this.assetData.w+"px");
-    this.innerElem.setAttribute('height',this.assetData.h+"px");
-    this.innerElem.setAttribute('preserveAspectRatio',this.assetData.pr || this.globalData.renderConfig.imagePreserveAspectRatio);
-    this.innerElem.setAttributeNS('http://www.w3.org/1999/xlink','href',assetPath);
-    
-    this.layerElement.appendChild(this.innerElem);
-};
-
-IImageElement.prototype.sourceRectAtTime = function() {
-	return this.sourceRect;
-}
-function ISolidElement(data,globalData,comp){
-    this.initElement(data,globalData,comp);
-}
-extendPrototype([IImageElement], ISolidElement);
-
-ISolidElement.prototype.createContent = function(){
-
-    var rect = createNS('rect');
-    ////rect.style.width = this.data.sw;
-    ////rect.style.height = this.data.sh;
-    ////rect.style.fill = this.data.sc;
-    rect.setAttribute('width',this.data.sw);
-    rect.setAttribute('height',this.data.sh);
-    rect.setAttribute('fill',this.data.sc);
-    this.layerElement.appendChild(rect);
-};
-function SVGCompElement(data,globalData,comp){
-    this.layers = data.layers;
-    this.supports3d = true;
-    this.completeLayers = false;
-    this.pendingElements = [];
-    this.elements = this.layers ? createSizedArray(this.layers.length) : [];
-    //this.layerElement = createNS('g');
-    this.initElement(data,globalData,comp);
-    this.tm = data.tm ? PropertyFactory.getProp(this,data.tm,0,globalData.frameRate,this) : {_placeholder:true};
-}
-
-extendPrototype([SVGRenderer, ICompElement, SVGBaseElement], SVGCompElement);
-function SVGTextElement(data,globalData,comp){
-    this.textSpans = [];
-    this.renderType = 'svg';
-    this.initElement(data,globalData,comp);
-=======
   },
 };
 
 /* global TextProperty, TextAnimatorProperty, buildShapeString, LetterProps */
 
 function ITextElement() {
->>>>>>> master
 }
 
 ITextElement.prototype.initElement = function (data, globalData, comp) {
@@ -10372,114 +8287,6 @@ ITextElement.prototype.destroy = function () {
 
 function ICompElement() {}
 
-<<<<<<< HEAD
-    var documentData = this.textProperty.currentData;
-    this.renderedLetters = createSizedArray(documentData ? documentData.l.length : 0);
-    if(documentData.fc) {
-        this.layerElement.setAttribute('fill', this.buildColor(documentData.fc));
-    }else{
-        this.layerElement.setAttribute('fill', 'rgba(0,0,0,0)');
-    }
-    if(documentData.sc){
-        this.layerElement.setAttribute('stroke', this.buildColor(documentData.sc));
-        this.layerElement.setAttribute('stroke-width', documentData.sw);
-    }
-    this.layerElement.setAttribute('font-size', documentData.finalSize);
-    var fontData = this.globalData.fontManager.getFontByName(documentData.f);
-    if(fontData.fClass){
-        this.layerElement.setAttribute('class',fontData.fClass);
-    } else {
-        this.layerElement.setAttribute('font-family', fontData.fFamily);
-        var fWeight = documentData.fWeight, fStyle = documentData.fStyle;
-        this.layerElement.setAttribute('font-style', fStyle);
-        this.layerElement.setAttribute('font-weight', fWeight);
-    }
-    this.layerElement.setAttribute('aria-label', documentData.t);
-
-    var letters = documentData.l || [];
-    var usesGlyphs = !!this.globalData.fontManager.chars;
-    len = letters.length;
-
-    var tSpan;
-    var matrixHelper = this.mHelper;
-    var shapes, shapeStr = '', singleShape = this.data.singleShape;
-    var xPos = 0, yPos = 0, firstLine = true;
-    var trackingOffset = documentData.tr/1000*documentData.finalSize;
-    if(singleShape && !usesGlyphs && !documentData.sz) {
-        var tElement = this.textContainer;
-        var justify = 'start';
-        switch(documentData.j) {
-            case 1:
-                justify = 'end';
-                break;
-            case 2:
-                justify = 'middle';
-                break;
-        }
-        tElement.setAttribute('text-anchor',justify);
-        tElement.setAttribute('letter-spacing',trackingOffset);
-        var textContent = this.buildTextContents(documentData.finalText);
-        len = textContent.length;
-        yPos = documentData.ps ? documentData.ps[1] + documentData.ascent : 0;
-        for ( i = 0; i < len; i += 1) {
-            tSpan = this.textSpans[i] || createNS('tspan');
-            tSpan.textContent = textContent[i];
-            tSpan.setAttribute('x', 0);
-            tSpan.setAttribute('y', yPos);
-            tSpan.style.display = 'inherit';
-            tSpan.id = `text_${this.data.nm}`;
-            tElement.appendChild(tSpan);
-            this.textSpans[i] = tSpan;
-            yPos += documentData.finalLineHeight;
-        }
-        
-        this.layerElement.appendChild(tElement);
-    } else {
-        var cachedSpansLength = this.textSpans.length;
-        var shapeData, charData;
-        for (i = 0; i < len; i += 1) {
-            if(!usesGlyphs || !singleShape || i === 0){
-                tSpan = cachedSpansLength > i ? this.textSpans[i] : createNS(usesGlyphs?'path':'text');
-                if (cachedSpansLength <= i) {
-                    tSpan.setAttribute('stroke-linecap', 'butt');
-                    tSpan.setAttribute('stroke-linejoin','round');
-                    tSpan.setAttribute('stroke-miterlimit','4');
-                    this.textSpans[i] = tSpan;
-                    this.layerElement.appendChild(tSpan);
-                }
-                tSpan.style.display = 'inherit';
-            }
-            
-            matrixHelper.reset();
-            matrixHelper.scale(documentData.finalSize / 100, documentData.finalSize / 100);
-            if (singleShape) {
-                if(letters[i].n) {
-                    xPos = -trackingOffset;
-                    yPos += documentData.yOffset;
-                    yPos += firstLine ? 1 : 0;
-                    firstLine = false;
-                }
-                this.applyTextPropertiesToMatrix(documentData, matrixHelper, letters[i].line, xPos, yPos);
-                xPos += letters[i].l || 0;
-                //xPos += letters[i].val === ' ' ? 0 : trackingOffset;
-                xPos += trackingOffset;
-            }
-            if(usesGlyphs) {
-                charData = this.globalData.fontManager.getCharData(documentData.finalText[i], fontData.fStyle, this.globalData.fontManager.getFontByName(documentData.f).fFamily);
-                shapeData = charData && charData.data || {};
-                shapes = shapeData.shapes ? shapeData.shapes[0].it : [];
-                if(!singleShape){
-                    tSpan.setAttribute('d',this.createPathShape(matrixHelper,shapes));
-                } else {
-                    shapeStr += this.createPathShape(matrixHelper,shapes);
-                }
-            } else {
-                if(singleShape) {
-                    tSpan.setAttribute("transform", "translate(" + matrixHelper.props[12] + "," + matrixHelper.props[13] + ")");
-                }
-                tSpan.textContent = letters[i].val;
-                tSpan.setAttributeNS("http://www.w3.org/XML/1998/namespace", "xml:space","preserve");
-=======
 extendPrototype([BaseElement, TransformElement, HierarchyElement, FrameElement, RenderableDOMElement], ICompElement);
 
 ICompElement.prototype.initElement = function (data, globalData, comp) {
@@ -10504,7 +8311,6 @@ ICompElement.prototype.initElement = function (data, globalData, comp) {
         for( i = 0; i < len; i+=1 ){
             if(this.elements[i]){
                 this.elements[i].hide();
->>>>>>> master
             }
         }
     }
@@ -10570,29 +8376,6 @@ ICompElement.prototype.destroyElements = function () {
     }
   }
 };
-<<<<<<< HEAD
-
-function SVGShapeElement(data,globalData,comp){
-    //List of drawable elements
-    this.shapes = [];
-    // Full shape data
-    this.shapesData = data.shapes;
-    //List of styles that will be applied to shapes
-    this.stylesList = [];
-    //List of modifiers that will be applied to shapes
-    this.shapeModifiers = [];
-    //List of items in shape tree
-    this.itemsData = [];
-    //List of items in previous shape tree
-    this.processedElements = [];
-    // List of animated components
-    this.animatedContents = [];
-    this.initElement(data,globalData,comp);
-    //Moving any property that doesn't get too much access after initialization because of v8 way of handling more than 10 properties.
-    // List of elements that have been created
-    this.prevViewData = [];
-    //Moving any property that doesn't get too much access after initialization because of v8 way of handling more than 10 properties.
-=======
 
 ICompElement.prototype.destroy = function () {
   this.destroyElements();
@@ -10607,7 +8390,6 @@ function IImageElement(data, globalData, comp) {
   this.sourceRect = {
     top: 0, left: 0, width: this.assetData.w, height: this.assetData.h,
   };
->>>>>>> master
 }
 
 extendPrototype([BaseElement, TransformElement, SVGBaseElement, HierarchyElement, FrameElement, RenderableDOMElement], IImageElement);
@@ -10725,278 +8507,12 @@ AudioElement.prototype.destroy = function () {
 
 AudioElement.prototype.sourceRectAtTime = function () {
 };
-<<<<<<< HEAD
-
-function SVGTintFilter(filter, filterManager){
-    this.filterManager = filterManager;
-    var feColorMatrix = createNS('feColorMatrix');
-    feColorMatrix.setAttribute('type','matrix');
-    feColorMatrix.setAttribute('color-interpolation-filters','linearRGB');
-    feColorMatrix.setAttribute('values','0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0');
-    feColorMatrix.setAttribute('result','f1');
-    filter.appendChild(feColorMatrix);
-    feColorMatrix = createNS('feColorMatrix');
-    feColorMatrix.setAttribute('type','matrix');
-    feColorMatrix.setAttribute('color-interpolation-filters','sRGB');
-    feColorMatrix.setAttribute('values','1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0');
-    feColorMatrix.setAttribute('result','f2');
-    filter.appendChild(feColorMatrix);
-    this.matrixFilter = feColorMatrix;
-    if(filterManager.effectElements[2].p.v !== 100 || filterManager.effectElements[2].p.k){
-        var feMerge = createNS('feMerge');
-        filter.appendChild(feMerge);
-        var feMergeNode;
-        feMergeNode = createNS('feMergeNode');
-        feMergeNode.setAttribute('in','SourceGraphic');
-        feMerge.appendChild(feMergeNode);
-        feMergeNode = createNS('feMergeNode');
-        feMergeNode.setAttribute('in','f2');
-        feMerge.appendChild(feMergeNode);
-    }
-}
-
-SVGTintFilter.prototype.renderFrame = function(forceRender){
-    if(forceRender || this.filterManager._mdf){
-        var colorBlack = this.filterManager.effectElements[0].p.v;
-        var colorWhite = this.filterManager.effectElements[1].p.v;
-        var opacity = this.filterManager.effectElements[2].p.v/100;
-        this.matrixFilter.setAttribute('values',(colorWhite[0]- colorBlack[0])+' 0 0 0 '+ colorBlack[0] +' '+ (colorWhite[1]- colorBlack[1]) +' 0 0 0 '+ colorBlack[1] +' '+ (colorWhite[2]- colorBlack[2]) +' 0 0 0 '+ colorBlack[2] +' 0 0 0 ' + opacity + ' 0');
-    }
-};
-function SVGFillFilter(filter, filterManager){
-    this.filterManager = filterManager;
-    var feColorMatrix = createNS('feColorMatrix');
-    feColorMatrix.setAttribute('type','matrix');
-    feColorMatrix.setAttribute('color-interpolation-filters','sRGB');
-    feColorMatrix.setAttribute('values','1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0');
-    filter.appendChild(feColorMatrix);
-    this.matrixFilter = feColorMatrix;
-}
-SVGFillFilter.prototype.renderFrame = function(forceRender){
-    if(forceRender || this.filterManager._mdf){
-        var color = this.filterManager.effectElements[2].p.v;
-        var opacity = this.filterManager.effectElements[6].p.v;
-        this.matrixFilter.setAttribute('values','0 0 0 0 '+color[0]+' 0 0 0 0 '+color[1]+' 0 0 0 0 '+color[2]+' 0 0 0 '+opacity+' 0');
-    }
-};
-function SVGGaussianBlurEffect(filter, filterManager){
-    // Outset the filter region by 100% on all sides to accommodate blur expansion.
-    filter.setAttribute('x','-100%');
-    filter.setAttribute('y','-100%');
-    filter.setAttribute('width','300%');
-    filter.setAttribute('height','300%');
-
-    this.filterManager = filterManager;
-    var feGaussianBlur = createNS('feGaussianBlur');
-    filter.appendChild(feGaussianBlur);
-    this.feGaussianBlur = feGaussianBlur;
-}
-
-SVGGaussianBlurEffect.prototype.renderFrame = function(forceRender){
-    if(forceRender || this.filterManager._mdf){
-        // Empirical value, matching AE's blur appearance.
-        var kBlurrinessToSigma = 0.3;
-        var sigma = this.filterManager.effectElements[0].p.v * kBlurrinessToSigma;
-
-        // Dimensions mapping:
-        //
-        //   1 -> horizontal & vertical
-        //   2 -> horizontal only
-        //   3 -> vertical only
-        //
-        var dimensions = this.filterManager.effectElements[1].p.v;
-        var sigmaX = (dimensions == 3) ? 0 : sigma;
-        var sigmaY = (dimensions == 2) ? 0 : sigma;
-
-        this.feGaussianBlur.setAttribute('stdDeviation', sigmaX + " " + sigmaY);
-
-        // Repeat edges mapping:
-        //
-        //   0 -> off -> duplicate
-        //   1 -> on  -> wrap
-        var edgeMode = (this.filterManager.effectElements[2].p.v == 1) ? 'wrap' : 'duplicate';
-        this.feGaussianBlur.setAttribute('edgeMode', edgeMode);
-    }
-}
-function SVGStrokeEffect(elem, filterManager){
-    this.initialized = false;
-    this.filterManager = filterManager;
-    this.elem = elem;
-    this.paths = [];
-}
-=======
 
 AudioElement.prototype.initExpressions = function () {
 };
->>>>>>> master
 
 /* global createSizedArray, PropertyFactory, extendPrototype, SVGRenderer, ICompElement, SVGBaseElement */
 
-<<<<<<< HEAD
-    var elemChildren = this.elem.layerElement.children || this.elem.layerElement.childNodes;
-    var path,groupPath, i, len;
-    if(this.filterManager.effectElements[1].p.v === 1){
-        len = this.elem.maskManager.masksProperties.length;
-        i = 0;
-    } else {
-        i = this.filterManager.effectElements[0].p.v - 1;
-        len = i + 1;
-    }
-    groupPath = createNS('g'); 
-    groupPath.setAttribute('fill','none');
-    groupPath.setAttribute('stroke-linecap','round');
-    groupPath.setAttribute('stroke-dashoffset',1);
-    for(i;i<len;i+=1){
-        path = createNS('path');
-        groupPath.appendChild(path);
-        this.paths.push({p:path,m:i});
-    }
-    if(this.filterManager.effectElements[10].p.v === 3){
-        var mask = createNS('mask');
-        var id = createElementID();
-        mask.setAttribute('id',id);
-        mask.setAttribute('mask-type','alpha');
-        mask.appendChild(groupPath);
-        this.elem.globalData.defs.appendChild(mask);
-        var g = createNS('g');
-        g.setAttribute('mask','url(' + locationHref + '#'+id+')');
-        while (elemChildren[0]) {
-            g.appendChild(elemChildren[0]);
-        }
-        this.elem.layerElement.appendChild(g);
-        this.masker = mask;
-        groupPath.setAttribute('stroke','#fff');
-    } else if(this.filterManager.effectElements[10].p.v === 1 || this.filterManager.effectElements[10].p.v === 2){
-        if(this.filterManager.effectElements[10].p.v === 2){
-            elemChildren = this.elem.layerElement.children || this.elem.layerElement.childNodes;
-            while(elemChildren.length){
-                this.elem.layerElement.removeChild(elemChildren[0]);
-            }
-        }
-        this.elem.layerElement.appendChild(groupPath);
-        this.elem.layerElement.removeAttribute('mask');
-        groupPath.setAttribute('stroke','#fff');
-    }
-    this.initialized = true;
-    this.pathMasker = groupPath;
-};
-
-SVGStrokeEffect.prototype.renderFrame = function(forceRender){
-    if(!this.initialized){
-        this.initialize();
-    }
-    var i, len = this.paths.length;
-    var mask, path;
-    for(i=0;i<len;i+=1){
-        if(this.paths[i].m === -1) {
-            continue;
-        }
-        mask = this.elem.maskManager.viewData[this.paths[i].m];
-        path = this.paths[i].p;
-        if(forceRender || this.filterManager._mdf || mask.prop._mdf){
-            path.setAttribute('d',mask.lastPath);
-        }
-        if(forceRender || this.filterManager.effectElements[9].p._mdf || this.filterManager.effectElements[4].p._mdf || this.filterManager.effectElements[7].p._mdf || this.filterManager.effectElements[8].p._mdf || mask.prop._mdf){
-            var dasharrayValue;
-            if(this.filterManager.effectElements[7].p.v !== 0 || this.filterManager.effectElements[8].p.v !== 100){
-                var s = Math.min(this.filterManager.effectElements[7].p.v,this.filterManager.effectElements[8].p.v)/100;
-                var e = Math.max(this.filterManager.effectElements[7].p.v,this.filterManager.effectElements[8].p.v)/100;
-                var l = path.getTotalLength();
-                dasharrayValue = '0 0 0 ' + l*s + ' ';
-                var lineLength = l*(e-s);
-                var segment = 1+this.filterManager.effectElements[4].p.v*2*this.filterManager.effectElements[9].p.v/100;
-                var units = Math.floor(lineLength/segment);
-                var j;
-                for(j=0;j<units;j+=1){
-                    dasharrayValue += '1 ' + this.filterManager.effectElements[4].p.v*2*this.filterManager.effectElements[9].p.v/100 + ' ';
-                }
-                dasharrayValue += '0 ' + l*10 + ' 0 0';
-            } else {
-                dasharrayValue = '1 ' + this.filterManager.effectElements[4].p.v*2*this.filterManager.effectElements[9].p.v/100;
-            }
-            path.setAttribute('stroke-dasharray',dasharrayValue);
-        }
-    }
-    if(forceRender || this.filterManager.effectElements[4].p._mdf){
-        this.pathMasker.setAttribute('stroke-width',this.filterManager.effectElements[4].p.v*2);
-    }
-    
-    if(forceRender || this.filterManager.effectElements[6].p._mdf){
-        this.pathMasker.setAttribute('opacity',this.filterManager.effectElements[6].p.v);
-    }
-    if(this.filterManager.effectElements[10].p.v === 1 || this.filterManager.effectElements[10].p.v === 2){
-        if(forceRender || this.filterManager.effectElements[3].p._mdf){
-            var color = this.filterManager.effectElements[3].p.v;
-            this.pathMasker.setAttribute('stroke','rgb('+bm_floor(color[0]*255)+','+bm_floor(color[1]*255)+','+bm_floor(color[2]*255)+')');
-        }
-    }
-};
-function SVGTritoneFilter(filter, filterManager){
-    this.filterManager = filterManager;
-    var feColorMatrix = createNS('feColorMatrix');
-    feColorMatrix.setAttribute('type','matrix');
-    feColorMatrix.setAttribute('color-interpolation-filters','linearRGB');
-    feColorMatrix.setAttribute('values','0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0');
-    feColorMatrix.setAttribute('result','f1');
-    filter.appendChild(feColorMatrix);
-    var feComponentTransfer = createNS('feComponentTransfer');
-    feComponentTransfer.setAttribute('color-interpolation-filters','sRGB');
-    filter.appendChild(feComponentTransfer);
-    this.matrixFilter = feComponentTransfer;
-    var feFuncR = createNS('feFuncR');
-    feFuncR.setAttribute('type','table');
-    feComponentTransfer.appendChild(feFuncR);
-    this.feFuncR = feFuncR;
-    var feFuncG = createNS('feFuncG');
-    feFuncG.setAttribute('type','table');
-    feComponentTransfer.appendChild(feFuncG);
-    this.feFuncG = feFuncG;
-    var feFuncB = createNS('feFuncB');
-    feFuncB.setAttribute('type','table');
-    feComponentTransfer.appendChild(feFuncB);
-    this.feFuncB = feFuncB;
-}
-
-SVGTritoneFilter.prototype.renderFrame = function(forceRender){
-    if(forceRender || this.filterManager._mdf){
-        var color1 = this.filterManager.effectElements[0].p.v;
-        var color2 = this.filterManager.effectElements[1].p.v;
-        var color3 = this.filterManager.effectElements[2].p.v;
-        var tableR = color3[0] + ' ' + color2[0] + ' ' + color1[0];
-        var tableG = color3[1] + ' ' + color2[1] + ' ' + color1[1];
-        var tableB = color3[2] + ' ' + color2[2] + ' ' + color1[2];
-        this.feFuncR.setAttribute('tableValues', tableR);
-        this.feFuncG.setAttribute('tableValues', tableG);
-        this.feFuncB.setAttribute('tableValues', tableB);
-        //var opacity = this.filterManager.effectElements[2].p.v/100;
-        //this.matrixFilter.setAttribute('values',(colorWhite[0]- colorBlack[0])+' 0 0 0 '+ colorBlack[0] +' '+ (colorWhite[1]- colorBlack[1]) +' 0 0 0 '+ colorBlack[1] +' '+ (colorWhite[2]- colorBlack[2]) +' 0 0 0 '+ colorBlack[2] +' 0 0 0 ' + opacity + ' 0');
-    }
-};
-function SVGProLevelsFilter(filter, filterManager){
-    this.filterManager = filterManager;
-    var effectElements = this.filterManager.effectElements;
-    var feComponentTransfer = createNS('feComponentTransfer');
-    var feFuncR, feFuncG, feFuncB;
-    
-    if(effectElements[10].p.k || effectElements[10].p.v !== 0 || effectElements[11].p.k || effectElements[11].p.v !== 1 || effectElements[12].p.k || effectElements[12].p.v !== 1 || effectElements[13].p.k || effectElements[13].p.v !== 0 || effectElements[14].p.k || effectElements[14].p.v !== 1){
-        this.feFuncR = this.createFeFunc('feFuncR', feComponentTransfer);
-    }
-    if(effectElements[17].p.k || effectElements[17].p.v !== 0 || effectElements[18].p.k || effectElements[18].p.v !== 1 || effectElements[19].p.k || effectElements[19].p.v !== 1 || effectElements[20].p.k || effectElements[20].p.v !== 0 || effectElements[21].p.k || effectElements[21].p.v !== 1){
-        this.feFuncG = this.createFeFunc('feFuncG', feComponentTransfer);
-    }
-    if(effectElements[24].p.k || effectElements[24].p.v !== 0 || effectElements[25].p.k || effectElements[25].p.v !== 1 || effectElements[26].p.k || effectElements[26].p.v !== 1 || effectElements[27].p.k || effectElements[27].p.v !== 0 || effectElements[28].p.k || effectElements[28].p.v !== 1){
-        this.feFuncB = this.createFeFunc('feFuncB', feComponentTransfer);
-    }
-    if(effectElements[31].p.k || effectElements[31].p.v !== 0 || effectElements[32].p.k || effectElements[32].p.v !== 1 || effectElements[33].p.k || effectElements[33].p.v !== 1 || effectElements[34].p.k || effectElements[34].p.v !== 0 || effectElements[35].p.k || effectElements[35].p.v !== 1){
-        this.feFuncA = this.createFeFunc('feFuncA', feComponentTransfer);
-    }
-    
-    if(this.feFuncR || this.feFuncG || this.feFuncB || this.feFuncA){
-        feComponentTransfer.setAttribute('color-interpolation-filters','sRGB');
-        filter.appendChild(feComponentTransfer);
-        feComponentTransfer = createNS('feComponentTransfer');
-    }
-=======
 function SVGCompElement(data, globalData, comp) {
   this.layers = data.layers;
   this.supports3d = true;
@@ -11009,7 +8525,6 @@ function SVGCompElement(data, globalData, comp) {
 }
 
 extendPrototype([SVGRenderer, ICompElement, SVGBaseElement], SVGCompElement);
->>>>>>> master
 
 /* global extendPrototype, BaseElement, TransformElement, SVGBaseElement, HierarchyElement, FrameElement,
 RenderableDOMElement, ITextElement, createSizedArray, createNS */
@@ -11112,6 +8627,7 @@ SVGTextLottieElement.prototype.buildNewText = function () {
       tSpan.setAttribute('x', 0);
       tSpan.setAttribute('y', yPos);
       tSpan.style.display = 'inherit';
+      tSpan.id = 'text_'.concat(this.data.nm);
       tElement.appendChild(tSpan);
       this.textSpans[i] = tSpan;
       yPos += documentData.finalLineHeight;
@@ -11270,56 +8786,10 @@ SVGShapeElement.prototype.identityMatrix = new Matrix();
 
 SVGShapeElement.prototype.buildExpressionInterface = function () {};
 
-<<<<<<< HEAD
-        if(this.feFuncA && (forceRender || effectElements[31].p._mdf || effectElements[32].p._mdf || effectElements[33].p._mdf || effectElements[34].p._mdf || effectElements[35].p._mdf)){
-            val = this.getTableValue(effectElements[31].p.v,effectElements[32].p.v,effectElements[33].p.v,effectElements[34].p.v,effectElements[35].p.v);
-            this.feFuncA.setAttribute('tableValues',val);
-        }
-        
-    }
-};
-function SVGDropShadowEffect(filter, filterManager) {
-    var filterSize = filterManager.container.globalData.renderConfig.filterSize
-    filter.setAttribute('x', filterSize.x);
-    filter.setAttribute('y', filterSize.y);
-    filter.setAttribute('width', filterSize.width);
-    filter.setAttribute('height', filterSize.height);
-    this.filterManager = filterManager;
-
-    var feGaussianBlur = createNS('feGaussianBlur');
-    feGaussianBlur.setAttribute('in','SourceAlpha');
-    feGaussianBlur.setAttribute('result','drop_shadow_1');
-    feGaussianBlur.setAttribute('stdDeviation','0');
-    this.feGaussianBlur = feGaussianBlur;
-    filter.appendChild(feGaussianBlur);
-
-    var feOffset = createNS('feOffset');
-    feOffset.setAttribute('dx','25');
-    feOffset.setAttribute('dy','0');
-    feOffset.setAttribute('in','drop_shadow_1');
-    feOffset.setAttribute('result','drop_shadow_2');
-    this.feOffset = feOffset;
-    filter.appendChild(feOffset);
-    var feFlood = createNS('feFlood');
-    feFlood.setAttribute('flood-color','#00ff00');
-    feFlood.setAttribute('flood-opacity','1');
-    feFlood.setAttribute('result','drop_shadow_3');
-    this.feFlood = feFlood;
-    filter.appendChild(feFlood);
-
-    var feComposite = createNS('feComposite');
-    feComposite.setAttribute('in','drop_shadow_3');
-    feComposite.setAttribute('in2','drop_shadow_2');
-    feComposite.setAttribute('operator','in');
-    feComposite.setAttribute('result','drop_shadow_4');
-    filter.appendChild(feComposite);
-
-=======
 SVGShapeElement.prototype.createContent = function () {
   this.searchShapes(this.shapesData, this.itemsData, this.prevViewData, this.layerElement, 0, [], true);
   this.filterUniqueShapes();
 };
->>>>>>> master
 
 /*
 This method searches for multiple shapes that affect a single element and one of them is animated
@@ -11644,40 +9114,6 @@ function SVGTintFilter(filter, filterManager) {
   }
 }
 
-<<<<<<< HEAD
-SVGDropShadowEffect.prototype.renderFrame = function(forceRender){
-    if(forceRender || this.filterManager._mdf){
-        if(forceRender || this.filterManager.effectElements[4].p._mdf){
-            this.feGaussianBlur.setAttribute('stdDeviation', this.filterManager.effectElements[4].p.v / 4);
-        }
-        if(forceRender || this.filterManager.effectElements[0].p._mdf){
-            var col = this.filterManager.effectElements[0].p.v;
-            this.feFlood.setAttribute('flood-color',rgbToHex(Math.round(col[0]*255),Math.round(col[1]*255),Math.round(col[2]*255)));
-        }
-        if(forceRender || this.filterManager.effectElements[1].p._mdf){
-            this.feFlood.setAttribute('flood-opacity',this.filterManager.effectElements[1].p.v/255);
-        }
-        if(forceRender || this.filterManager.effectElements[2].p._mdf || this.filterManager.effectElements[3].p._mdf){
-            var distance = this.filterManager.effectElements[3].p.v;
-            var angle = (this.filterManager.effectElements[2].p.v - 90) * degToRads;
-            var x = distance * Math.cos(angle);
-            var y = distance * Math.sin(angle);
-            this.feOffset.setAttribute('dx', x);
-            this.feOffset.setAttribute('dy', y);
-        }
-        /*if(forceRender || this.filterManager.effectElements[5].p._mdf){
-            if(this.filterManager.effectElements[5].p.v === 1 && this.originalNodeAdded) {
-                this.feMerge.removeChild(this.feMergeNode);
-                this.originalNodeAdded = false;
-            } else if(this.filterManager.effectElements[5].p.v === 0 && !this.originalNodeAdded) {
-                this.feMerge.appendChild(this.feMergeNode);
-                this.originalNodeAdded = true;
-            }
-        }*/
-    }
-};
-var _svgMatteSymbols = [];
-=======
 SVGTintFilter.prototype.renderFrame = function (forceRender) {
   if (forceRender || this.filterManager._mdf) {
     var colorBlack = this.filterManager.effectElements[0].p.v;
@@ -11747,7 +9183,6 @@ SVGGaussianBlurEffect.prototype.renderFrame = function (forceRender) {
     this.feGaussianBlur.setAttribute('edgeMode', edgeMode);
   }
 };
->>>>>>> master
 
 /* global createNS, createElementID, locationHref, bmFloor */
 
@@ -12001,96 +9436,9 @@ SVGProLevelsFilter.prototype.renderFrame = function (forceRender) {
       this.feFuncB.setAttribute('tableValues', val);
     }
 
-<<<<<<< HEAD
-SVGMatte3Effect.prototype.setElementAsMask = function(elem, mask) {
-    if(!this.findSymbol(mask)) {
-        var symbolId = createElementID();
-        var masker = createNS('mask');
-        masker.setAttribute('id', mask.layerId);
-        masker.setAttribute('mask-type', 'alpha');
-        _svgMatteSymbols.push(mask);
-        var defs = elem.globalData.defs;
-        defs.appendChild(masker);
-        var symbol = createNS('symbol');
-        symbol.setAttribute('id', symbolId);
-        this.replaceInParent(mask, symbolId);
-        symbol.appendChild(mask.layerElement);
-        defs.appendChild(symbol);
-        var useElem = createNS('use');
-        useElem.setAttribute('href', '#' + symbolId);
-        masker.appendChild(useElem);
-        mask.data.hd = false;
-        mask.show();
-    }
-    elem.setMatte(mask.layerId);
-};
-
-SVGMatte3Effect.prototype.initialize = function() {
-    var ind = this.filterManager.effectElements[0].p.v;
-    var elements = this.elem.comp.elements;
-    var i = 0, len = elements.length;
-    while (i < len) {
-    	if (elements[i] && elements[i].data.ind === ind) {
-    		this.setElementAsMask(this.elem, elements[i]);
-    	}
-    	i += 1;
-    }
-    this.initialized = true;
-};
-
-SVGMatte3Effect.prototype.renderFrame = function() {
-	if(!this.initialized) {
-		this.initialize();
-	}
-};
-function SVGEffects(elem){
-    var i, len = elem.data.ef ? elem.data.ef.length : 0;
-    var filId = createElementID();
-    var fil = filtersFactory.createFilter(filId);
-    var count = 0;
-    this.filters = [];
-    var filterManager;
-    for(i=0;i<len;i+=1){
-        filterManager = null;
-        if(elem.data.ef[i].ty === 20){
-            count += 1;
-            filterManager = new SVGTintFilter(fil, elem.effectsManager.effectElements[i]);
-        }else if(elem.data.ef[i].ty === 21){
-            count += 1;
-            filterManager = new SVGFillFilter(fil, elem.effectsManager.effectElements[i]);
-        }else if(elem.data.ef[i].ty === 22){
-            filterManager = new SVGStrokeEffect(elem, elem.effectsManager.effectElements[i]);
-        }else if(elem.data.ef[i].ty === 23){
-            count += 1;
-            filterManager = new SVGTritoneFilter(fil, elem.effectsManager.effectElements[i]);
-        }else if(elem.data.ef[i].ty === 24){
-            count += 1;
-            filterManager = new SVGProLevelsFilter(fil, elem.effectsManager.effectElements[i]);
-        }else if(elem.data.ef[i].ty === 25){
-            count += 1;
-            filterManager = new SVGDropShadowEffect(fil, elem.effectsManager.effectElements[i]);
-        }else if(elem.data.ef[i].ty === 28){
-            //count += 1;
-            filterManager = new SVGMatte3Effect(fil, elem.effectsManager.effectElements[i], elem);
-        }else if(elem.data.ef[i].ty === 29){
-            count += 1;
-            filterManager = new SVGGaussianBlurEffect(fil, elem.effectsManager.effectElements[i]);
-        }
-        if(filterManager) {
-            this.filters.push(filterManager);
-        }
-    }
-    if(count){
-        elem.globalData.defs.appendChild(fil);
-        elem.layerElement.setAttribute('filter','url(' + locationHref + '#'+filId+')');
-    }
-    if (this.filters.length) {
-        elem.addRenderableComponent(this);
-=======
     if (this.feFuncA && (forceRender || effectElements[31].p._mdf || effectElements[32].p._mdf || effectElements[33].p._mdf || effectElements[34].p._mdf || effectElements[35].p._mdf)) {
       val = this.getTableValue(effectElements[31].p.v, effectElements[32].p.v, effectElements[33].p.v, effectElements[34].p.v, effectElements[35].p.v);
       this.feFuncA.setAttribute('tableValues', val);
->>>>>>> master
     }
   }
 };
@@ -12146,42 +9494,10 @@ function SVGDropShadowEffect(filter, filterManager) {
   feMerge.appendChild(feMergeNode);
 }
 
-<<<<<<< HEAD
-SVGEffects.prototype.renderFrame = function(_isFirstFrame){
-    var i, len = this.filters.length;
-    for(i=0;i<len;i+=1){
-        this.filters[i].renderFrame(_isFirstFrame);
-    }
-};
-var animationManager = (function(){
-    var moduleOb = {};
-    var registeredAnimations = [];
-    var initTime = 0;
-    var len = 0;
-    var playingAnimationsNum = 0;
-    var _stopped = true;
-    var _isFrozen = false;
-
-    function removeElement(ev){
-        var i = 0;
-        var animItem = ev.target;
-        while(i<len) {
-            if (registeredAnimations[i].animation === animItem) {
-                registeredAnimations.splice(i, 1);
-                i -= 1;
-                len -= 1;
-                if(!animItem.isPaused){
-                    subtractPlayingCount();
-                }
-            }
-            i += 1;
-        }
-=======
 SVGDropShadowEffect.prototype.renderFrame = function (forceRender) {
   if (forceRender || this.filterManager._mdf) {
     if (forceRender || this.filterManager.effectElements[4].p._mdf) {
       this.feGaussianBlur.setAttribute('stdDeviation', this.filterManager.effectElements[4].p.v / 4);
->>>>>>> master
     }
     if (forceRender || this.filterManager.effectElements[0].p._mdf) {
       var col = this.filterManager.effectElements[0].p.v;
@@ -12557,16 +9873,12 @@ var animationManager = (function () {
   moduleOb.getRegisteredAnimations = getRegisteredAnimations;
   return moduleOb;
 }());
-<<<<<<< HEAD
-
-=======
 
 /* global createElementID, subframeEnabled, ProjectInterface, ImagePreloader, audioControllerFactory, extendPrototype, BaseEvent,
 CanvasRenderer, SVGRenderer, HybridRenderer, assetLoader, dataManager, expressionsPlugin, BMEnterFrameEvent, BMCompleteLoopEvent,
 BMCompleteEvent, BMSegmentStartEvent, BMDestroyEvent, BMEnterFrameEvent, BMCompleteLoopEvent, BMCompleteEvent, BMSegmentStartEvent,
 BMDestroyEvent, BMRenderFrameErrorEvent, BMConfigErrorEvent */
 
->>>>>>> master
 var AnimationItem = function () {
   this._cbs = [];
   this.name = '';
@@ -13277,19 +10589,6 @@ function EffectsManager() {
   this.effectElements = [];
 }
 
-<<<<<<< HEAD
-AnimationItem.prototype.triggerConfigError = function(nativeError) {
-
-    var error = new BMConfigErrorEvent(nativeError, this.currentFrame);
-    this.triggerEvent('error', error);
-
-    if (this.onError) {
-        this.onError.call(this, error);
-    }
-}
-function EffectsManager(){}
-=======
->>>>>>> master
 
 var lottie = {};
 
